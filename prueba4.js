@@ -29,8 +29,8 @@ function fungetticker()
 
 function obtenerhora(){ 
 	var fecha = new Date();
-	var cadena = fecha.getHours()+":"+f.getMinutes()+":"+f.getSeconds(); 
-	console.log( cadena );
+	var cadena = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds(); 
+//	console.log( cadena );
 	return cadena;
 }
 
