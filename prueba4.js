@@ -1,7 +1,8 @@
 var bittrex = require('./node.bittrex.api.js');
 var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
-wstream.write( 'Bid, Ask, Last' );
+var vcont = 1;
+wstream.write( 'Numero, Bid, Ask, Last' );
 wstream.write('\n');
 
 function fungetticker()
@@ -14,10 +15,12 @@ function fungetticker()
 		let vasktxt = vask.toString();
 		let vlast = data.result.Last;
 		let vlasttxt = vlast.toString();
-		let vlinetxt = vbidtxt + ',' + vasktxt + ',' + vlasttxt;
+		let vlinetxt = vcontext + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt;
 		console.log( vlinetxt );
 		wstream.write( vlinetxt );
 		wstream.write('\n');
+		let vcont = vcont + 1;
+		let vcontext = vcont.toString();
 	}  	
 					 );
 }
