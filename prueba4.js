@@ -29,9 +29,23 @@ function fungetticker()
 
 function obtenerhora(){ 
 	var fecha = new Date();
-	var cadena = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds(); 
-//	console.log( cadena );
-	return cadena;
+	var vhoras = fecha.getHours();
+	vhoras = ponerCeros(vhoras);
+	var vminutos = fecha.getMinutes();
+	vminutos = ponerCeros(vminutos);
+	var vsegundos = fecha.getSeconds();
+	vsegundos = ponerCeros(vsegundos);
+	var vcadena = vhoras + ":" + vminutos + ":" + vsegundos; 
+//	console.log( vcadena );
+	return vcadena;
+}
+
+function ponerCeros(vcadenarellenar) {
+	while (vcadenarellenar.length < 2)
+	{
+		vcadenarellenar = '0' + vcadenarellenar;
+	}
+	return vcadenarellenar;
 }
 
 setInterval(fungetticker, 20000);
