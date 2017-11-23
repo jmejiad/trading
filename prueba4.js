@@ -1,7 +1,7 @@
 var bittrex = require('./node.bittrex.api.js');
 var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
-var vcont = 0;
+
 wstream.write( 'Numero, Bid, Ask, Last' );
 wstream.write('\n');
 
@@ -25,6 +25,7 @@ function fungetticker()
 					 );
 }
 
+var vcont = 0;
 setInterval(fungetticker, 20000);
 
 //wstream.end();
