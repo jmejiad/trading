@@ -29,19 +29,18 @@ function fungetticker()
 
 function obtenerhora(){ 
 	var fecha = new Date();
-	var vhoras = fecha.getHours();
+	var vhoras = fecha.getHours().toString();
 	vhoras = ponerCeros(vhoras);
-	var vminutos = fecha.getMinutes();
+	var vminutos = fecha.getMinutes().toString();
 	vminutos = ponerCeros(vminutos);
-	var vsegundos = fecha.getSeconds();
+	var vsegundos = fecha.getSeconds().toString();
 	vsegundos = ponerCeros(vsegundos);
 	var vcadena = vhoras + ":" + vminutos + ":" + vsegundos; 
 //	console.log( vcadena );
 	return vcadena;
 }
 
-function ponerCeros(vcadenarellenar) {
-	var vcad = vcadenarellenar.toString();
+function ponerCeros(vcad) {
 	while (vcad.length < 2)
 	{
 		vcad = '0' + vcad;
