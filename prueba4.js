@@ -41,15 +41,16 @@ function obtenerhora(){
 }
 
 function ponerCeros(vcadenarellenar) {
-	while (vcadenarellenar.length < 2)
+	var vcad = vcadenarellenar.toString();
+	while (vcad.length < 2)
 	{
-		vcadenarellenar = '0' + vcadenarellenar;
+		vcad = '0' + vcad;
 	}
 	console.log('\n');
-	console.log( vcadenarellenar.length );
+	console.log( vcad.length );
 	console.log('\n');
-	console.log( vcadenarellenar );
-	return vcadenarellenar;
+	console.log( vcad );
+	return vcad;
 }
 
 setInterval(fungetticker, 20000);
