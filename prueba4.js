@@ -19,7 +19,7 @@ function fungetticker()
 		vcont = vcont + 1;
 		var vcontxt = vcont.toString();
 		var vhora = obtenerhora();
-		var vlinetxt = vcontxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt;
+		var vlinetxt = (vcontxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt);
 		console.log( vlinetxt );
 		wstream.write( vlinetxt );
 		wstream.write('\n');
@@ -30,6 +30,7 @@ function fungetticker()
 function obtenerhora(){ 
 	var fecha = new Date();
 	var cadena = fecha.getHours()+":"+f.getMinutes()+":"+f.getSeconds(); 
+	console.log( cadena );
 	return cadena;
 }
 
