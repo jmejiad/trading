@@ -40,7 +40,7 @@ function obtenerhora(){
 	return vcadena;
 }
 
-function ponerCeros(var vcadenarellenar) {
+function ponerCeros(vcadenarellenar) {
 	while (vcadenarellenar.length < 2)
 	{
 		vcadenarellenar = '0' + vcadenarellenar;
