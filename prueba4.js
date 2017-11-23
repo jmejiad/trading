@@ -3,7 +3,7 @@ var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
 var vcont = 0;
 
-wstream.write( 'Numero, Bid, Ask, Last' );
+wstream.write( 'Numero, Hora, Bid, Ask, Last' );
 wstream.write('\n');
 
 function fungetticker()
@@ -18,12 +18,19 @@ function fungetticker()
 		var vlasttxt = vlast.toString();
 		vcont = vcont + 1;
 		var vcontxt = vcont.toString();
-		var vlinetxt = vcontxt + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt;
+		var vhora = obtenerhora();
+		var vlinetxt = vcontxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt;
 		console.log( vlinetxt );
 		wstream.write( vlinetxt );
 		wstream.write('\n');
 	}  	
 					 );
+}
+
+function obtenerhora(){ 
+	var fecha = new Date();
+	var cadena = fecha.getHours()+":"+f.getMinutes()+":"+f.getSeconds(); 
+	return cadena;
 }
 
 setInterval(fungetticker, 20000);
