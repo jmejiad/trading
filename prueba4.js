@@ -40,13 +40,13 @@ function obtenerhora(){
 	return vcadena;
 }
 
-function ponerCeros(vcadenarellenar) {
+function ponerCeros(var vcadenarellenar) {
 	while (vcadenarellenar.length < 2)
 	{
 		vcadenarellenar = '0' + vcadenarellenar;
 	}
 	console.log('\n');
-	console.log( vcadenarellenar.lengh );
+	console.log( vcadenarellenar.length );
 	console.log('\n');
 	console.log( vcadenarellenar );
 	return vcadenarellenar;
