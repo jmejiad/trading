@@ -45,10 +45,6 @@ function ponerCeros(vcad) {
 	{
 		vcad = '0' + vcad;
 	}
-	console.log('\n');
-	console.log( vcad.length );
-	console.log('\n');
-	console.log( vcad );
 	return vcad;
 }
 
