@@ -46,6 +46,8 @@ function ponerCeros(vcadenarellenar) {
 		vcadenarellenar = '0' + vcadenarellenar;
 	}
 	console.log('\n');
+	console.log( vcadenarellenar.lengh );
+	console.log('\n');
 	console.log( vcadenarellenar );
 	return vcadenarellenar;
 }
