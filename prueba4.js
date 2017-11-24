@@ -2,9 +2,9 @@ var bittrex = require('./node.bittrex.api.js');
 var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
 var vcont = 0;
-var vbid;
-var vask;
-var vlast;
+var vbid, vdidtxt;
+var vask, vasktxt;
+var vlast, vlasttxt;
 
 
 wstream.write( 'Numero, Hora, Bid, Ask, Last' );
@@ -21,17 +21,20 @@ function fungetticker()
 		vbid = data.result.Bid;
 		vask = data.result.Ask;
 		vlast = data.result.Last;
+		vbidtxt = funponerCerosDer(vbid.toString(), 10);
+		vasktxt = funponerCerosDer(vask.toString(), 10);
+		vlasttxt = funponerCerosDer(vlast.toString(), 10);
+		funcalculardatos();
 		funescribirarchivo();
-
 	}  	
 					 );
 }
+function funcalculardatos()
+{
 
+}
 function funescribirarchivo()
 {
-	var vbidtxt = funponerCerosDer(vbid.toString(), 10);
-	var vasktxt = funponerCerosDer(vask.toString(), 10);
-	var vlasttxt = funponerCerosDer(vlast.toString(), 10);
 	vcont = vcont + 1;
 	var vcontxt = vcont.toString();
 	var vhora = funobtenerhora();
