@@ -14,10 +14,15 @@ function fungetticker()
 {
 	bittrex.getticker( { market : 'BTC-ETH' }, function( data, err ) 
 	{	
+		if (err) 
+		{
+    		return console.error(err);
+  		}
 		vbid = data.result.Bid;
 		vask = data.result.Ask;
 		vlast = data.result.Last;
 		funescribirarchivo();
+
 	}  	
 					 );
 }
