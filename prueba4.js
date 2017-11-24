@@ -1,18 +1,29 @@
-var bittrex = require('./node.bittrex.api.js');
+//var bittrex = require('./node.bittrex.api.js');
+var bittrex = require('node-bittrex-api');
+bittrex.options({
+  'apikey' : 'c9bb8f0994634d92acf050acd899c173',
+  'apisecret' : '8af924252c8a4947b520a01607c5daea',
+});
 var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
-var vcont = 0;
+var i = 0;
 var vbid, vdidtxt;
 var vask, vasktxt;
 var vlast, vlasttxt;
+var vcliente = 'Jose Mejia';
+var vspread, vid_op, vmercado = 'BTC-ETH', vestado_op, vtipo_op, vunicompradas, vvalorcompra, vacumcompra, vprofoper;
+var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, vvalorventa, vdiferenciavc, vporcentajedifvc;
 
+{
+	wstream.write( 'Numero, Hora, Bid, Ask, Last' );
+	wstream.write('\n');
+	setInterval(fungetticker(), 5000);
+}
 
-wstream.write( 'Numero, Hora, Bid, Ask, Last' );
-wstream.write('\n');
 
 function fungetticker()
 {
-	bittrex.getticker( { market : 'BTC-ETH' }, function( data, err ) 
+	bittrex.getticker( { market : vmercado }, function( data, err ) 
 	{	
 		if (err) 
 		{
@@ -31,14 +42,20 @@ function fungetticker()
 }
 function funcalculardatos()
 {
+	vspread = vask - vbid;
+	vid_op = i; // buscar en base de datos el id de las operaciones abiertas, si no hay ninguna, traer un nuevo id_op.
+	vestado_op = 'Abierta';
+	vtipo_op = 'Compra'; // traer el tipo de op de la base de datos. si no hay op abierta, el tipo de op será 'compra'.
+	vunicompradas = 100; // traer de la base de datos el numero de unidades a comprar para este cliente en este mercado.
+
 
 }
 function funescribirarchivo()
 {
-	vcont = vcont + 1;
-	var vcontxt = vcont.toString();
+	i = i + 1;
+	var itxt = i.toString();
 	var vhora = funobtenerhora();
-	var vlinetxt = (vcontxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt);
+	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt);
 	console.log( vlinetxt );
 	wstream.write( vlinetxt );
 	wstream.write('\n');
@@ -76,7 +93,6 @@ function funponerCerosDer(vcad, vlon)
 	return vcad;
 }
 
-setInterval(fungetticker, 20000);
 
 
 //wstream.end();
