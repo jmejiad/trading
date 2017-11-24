@@ -17,7 +17,7 @@ var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, 
 {
 	wstream.write( 'Numero, Hora, Bid, Ask, Last' );
 	wstream.write('\n');
-	setInterval(fungetticker(), 5000);
+	setInterval(fungetticker, 5000);
 }
 
 
