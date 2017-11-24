@@ -2,6 +2,10 @@ var bittrex = require('./node.bittrex.api.js');
 var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
 var vcont = 0;
+var vbid;
+var vask;
+var vlast;
+
 
 wstream.write( 'Numero, Hora, Bid, Ask, Last' );
 wstream.write('\n');
@@ -10,9 +14,9 @@ function fungetticker()
 {
 	bittrex.getticker( { market : 'BTC-ETH' }, function( data, err ) 
 	{	
-		var vbid = data.result.Bid;
-		var vask = data.result.Ask;
-		var vlast = data.result.Last;
+		vbid = data.result.Bid;
+		vask = data.result.Ask;
+		vlast = data.result.Last;
 		funescribirarchivo();
 	}  	
 					 );
@@ -32,7 +36,8 @@ function funescribirarchivo()
 	wstream.write('\n');
 }
 
-function funobtenerhora(){ 
+function funobtenerhora()
+{ 
 	var fecha = new Date();
 	var vhoras = fecha.getHours().toString();
 	vhoras = funponerCerosIzq(vhoras, 2);
@@ -45,7 +50,8 @@ function funobtenerhora(){
 	return vcadena;
 }
 
-function funponerCerosIzq(vcad, vlon) {
+function funponerCerosIzq(vcad, vlon) 
+{
 	while (vcad.length < vlon)
 	{
 		vcad = '0' + vcad;
@@ -53,7 +59,8 @@ function funponerCerosIzq(vcad, vlon) {
 	return vcad;
 }
 
-function funponerCerosDer(vcad, vlon) {
+function funponerCerosDer(vcad, vlon) 
+{
 	while (vcad.length < vlon)
 	{
 		vcad = vcad + '0';
