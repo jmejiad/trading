@@ -18,7 +18,7 @@ function fungetticker()
 					 );
 }
 
-function funescribirarchivo();
+function funescribirarchivo()
 {
 	var vbidtxt = funponerCerosDer(vbid.toString(), 10);
 	var vasktxt = funponerCerosDer(vask.toString(), 10);
