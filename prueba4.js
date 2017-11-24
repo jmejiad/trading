@@ -11,11 +11,11 @@ function fungetticker()
 	bittrex.getticker( { market : 'BTC-ETH' }, function( data, err ) 
 	{	
 		var vbid = data.result.Bid;
-		var vbidtxt = vbid.toString();
+		var vbidtxt = ponerCerosDer(vbid.toString(), 10);
 		var vask = data.result.Ask;
-		var vasktxt = vask.toString();
+		var vasktxt = ponerCerosDer(vask.toString(), 10);
 		var vlast = data.result.Last;
-		var vlasttxt = vlast.toString();
+		var vlasttxt = ponerCerosDer(vlast.toString(), 10);
 		vcont = vcont + 1;
 		var vcontxt = vcont.toString();
 		var vhora = obtenerhora();
@@ -30,20 +30,28 @@ function fungetticker()
 function obtenerhora(){ 
 	var fecha = new Date();
 	var vhoras = fecha.getHours().toString();
-	vhoras = ponerCeros(vhoras);
+	vhoras = ponerCerosIzq(vhoras, 2);
 	var vminutos = fecha.getMinutes().toString();
-	vminutos = ponerCeros(vminutos);
+	vminutos = ponerCerosIzq(vminutos, 2);
 	var vsegundos = fecha.getSeconds().toString();
-	vsegundos = ponerCeros(vsegundos);
+	vsegundos = ponerCerosIzq(vsegundos, 2);
 	var vcadena = vhoras + ":" + vminutos + ":" + vsegundos; 
 //	console.log( vcadena );
 	return vcadena;
 }
 
-function ponerCeros(vcad) {
-	while (vcad.length < 2)
+function ponerCerosIzq(vcad, vlon) {
+	while (vcad.length < vlon)
 	{
 		vcad = '0' + vcad;
+	}
+	return vcad;
+}
+
+function ponerCerosDer(vcad, vlon) {
+	while (vcad.length < vlon)
+	{
+		vcad = vcad + '0';
 	}
 	return vcad;
 }
