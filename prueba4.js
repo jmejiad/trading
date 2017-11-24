@@ -11,36 +11,41 @@ function fungetticker()
 	bittrex.getticker( { market : 'BTC-ETH' }, function( data, err ) 
 	{	
 		var vbid = data.result.Bid;
-		var vbidtxt = ponerCerosDer(vbid.toString(), 10);
 		var vask = data.result.Ask;
-		var vasktxt = ponerCerosDer(vask.toString(), 10);
 		var vlast = data.result.Last;
-		var vlasttxt = ponerCerosDer(vlast.toString(), 10);
-		vcont = vcont + 1;
-		var vcontxt = vcont.toString();
-		var vhora = obtenerhora();
-		var vlinetxt = (vcontxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt);
-		console.log( vlinetxt );
-		wstream.write( vlinetxt );
-		wstream.write('\n');
+		funescribirarchivo();
 	}  	
 					 );
 }
 
-function obtenerhora(){ 
+function funescribirarchivo();
+{
+	var vbidtxt = funponerCerosDer(vbid.toString(), 10);
+	var vasktxt = funponerCerosDer(vask.toString(), 10);
+	var vlasttxt = funponerCerosDer(vlast.toString(), 10);
+	vcont = vcont + 1;
+	var vcontxt = vcont.toString();
+	var vhora = funobtenerhora();
+	var vlinetxt = (vcontxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt);
+	console.log( vlinetxt );
+	wstream.write( vlinetxt );
+	wstream.write('\n');
+}
+
+function funobtenerhora(){ 
 	var fecha = new Date();
 	var vhoras = fecha.getHours().toString();
-	vhoras = ponerCerosIzq(vhoras, 2);
+	vhoras = funponerCerosIzq(vhoras, 2);
 	var vminutos = fecha.getMinutes().toString();
-	vminutos = ponerCerosIzq(vminutos, 2);
+	vminutos = funponerCerosIzq(vminutos, 2);
 	var vsegundos = fecha.getSeconds().toString();
-	vsegundos = ponerCerosIzq(vsegundos, 2);
+	vsegundos = funponerCerosIzq(vsegundos, 2);
 	var vcadena = vhoras + ":" + vminutos + ":" + vsegundos; 
 //	console.log( vcadena );
 	return vcadena;
 }
 
-function ponerCerosIzq(vcad, vlon) {
+function funponerCerosIzq(vcad, vlon) {
 	while (vcad.length < vlon)
 	{
 		vcad = '0' + vcad;
@@ -48,7 +53,7 @@ function ponerCerosIzq(vcad, vlon) {
 	return vcad;
 }
 
-function ponerCerosDer(vcad, vlon) {
+function funponerCerosDer(vcad, vlon) {
 	while (vcad.length < vlon)
 	{
 		vcad = vcad + '0';
@@ -57,6 +62,7 @@ function ponerCerosDer(vcad, vlon) {
 }
 
 setInterval(fungetticker, 20000);
+
 
 //wstream.end();
 
