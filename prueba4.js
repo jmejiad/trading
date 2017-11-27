@@ -65,6 +65,8 @@ function fungetticker()
 
 function funoperacion()
 {
+	console.log('\n');
+	console.log('------  INICIO -----');
 	console.log('vestado_op: ' + vestado_op);
 	if (i > 3){
 		if (vestado_op = 0){ // si no hay operacion abierta
