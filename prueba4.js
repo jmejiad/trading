@@ -45,9 +45,9 @@ function fungetticker()
 		vbid1 = data.result.Bid;
 		vask1 = data.result.Ask;
 		vlast1 = data.result.Last;
-		vbid = vbid1.Tonumber();
-		vask = vask1.Tonumber();
-		vlast = vlast1.Tonumber();
+		vbid = Number(vbid1);
+		vask = Number(vask1);
+		vlast = Number(vlast1);
 		vbidtxt = funponerCerosDer(vbid.toString(), 10);
 		vasktxt = funponerCerosDer(vask.toString(), 10);
 		vlasttxt = funponerCerosDer(vlast.toString(), 10);
