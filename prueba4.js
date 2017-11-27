@@ -32,7 +32,7 @@ var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, 
 	vvalorcompra = 0;
 	vid_op = 0;
 	//funtraerdatosbd();
-	setInterval(fungetticker, 5000);
+	setInterval(fungetticker, 20000);
 }
 
 
@@ -48,11 +48,9 @@ function fungetticker()
 		vlast1 = data.result.Last;
 		vbid = Number(vbid1);
 		vlast = Number(vlast1);
-		if (Number(vask1) != vaskant) {
-			vaskant2 = vaskant;
-			vaskant = vask;
-			vask = Number(vask1);
-		}
+		vaskant2 = vaskant;
+		vaskant = vask;
+		vask = Number(vask1);
 		vbidtxt = funponerCerosDer(vbid.toString(), 10);
 		vasktxt = funponerCerosDer(vask.toString(), 10);
 		vlasttxt = funponerCerosDer(vlast.toString(), 10);
