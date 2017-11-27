@@ -77,7 +77,7 @@ function funoperacion()
 			if ((vask > vaskant) && (vaskant < vaskant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
 				vestado_op = 1;
 				console.log('Acción: Comprar');
-				//funcompra();
+				funcompra();
 			}
 		} else {
 			if (vprofoper == 1) {
