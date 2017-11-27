@@ -68,10 +68,8 @@ function funoperacion()
 			vestado_op = 1;
 			vaccion = 'Comprar';
 			//funcompra();
-
 		}
-	} else {
-
+	} else if (vestado_op = 1) {
 		vdiferenciavc = (vbid - vaskcompra) * vuniacumcompra 
 		vporcactual = vdiferenciavc / vvalorcompra;
 		if (vporcactual > vporcesperado || vporcactual < -vporcesperado) {
