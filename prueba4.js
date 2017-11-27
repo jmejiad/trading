@@ -26,7 +26,7 @@ var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, 
 	  'apisecret' : '8af924252c8a4947b520a01607c5daea',
 	});
 
-	wstream.write( 'Numero, Hora, Bid, Ask, Last, Accion' );
+	wstream.write( 'Numero, Hora, Bid, Ask, Last' );
 	wstream.write('\n');
 	vacumcompra = 0;
 	vvalorcompra = 0;
@@ -55,6 +55,7 @@ function fungetticker()
 		vasktxt = funponerCerosDer(vask.toString(), 10);
 		vlasttxt = funponerCerosDer(vlast.toString(), 10);
 		funcalculardatos();
+		vaccion = '';
 		funoperacion();
 		funescribirarchivo();
 	}  	
@@ -67,7 +68,7 @@ function funoperacion()
 	if (vestado_op = 0){ // si no hay operacion abierta
 		if ((vask > vaskant) && (vaskant < vaskant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
 			vestado_op = 1;
-			vaccion = 'Comprar';
+			console.log('Acción: Comprar');
 			//funcompra();
 		}
 	} else {
@@ -81,11 +82,11 @@ function funoperacion()
 
 		if (vporcactual > vporcesperado || vporcactual < -vporcesperado) {
 			if (vporcactual > vporcesperado) {
-				//funcompra();
-				vaccion = 'Recomprar';
+				funcompra();
+				console.log('Acción: Recomprar');
 			} else if (vporcactual < -vporcesperado) {
-				//funventa();
-				vaccion = 'Vender';
+				funventa();
+				console.log('Acción: Vender');
 			}
 		}
 	}
@@ -140,7 +141,7 @@ function funescribirarchivo()
 	i = i + 1;
 	var itxt = i.toString();
 	var vhora = funobtenerhora();
-	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + vaccion);
+	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt);
 	console.log( vlinetxt );
 	console.log('vestado_op: ' + vestado_op);
 	console.log('vask: ' + vask);
