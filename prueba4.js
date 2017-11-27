@@ -57,7 +57,7 @@ function fungetticker()
 		funcalculardatos();
 		vaccion = '';
 		funoperacion();
-		funescribirarchivo();
+		//funescribirarchivo();
 		i = i + 1;
 	}  	
 					);
