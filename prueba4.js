@@ -1,22 +1,36 @@
 //var bittrex = require('./node.bittrex.api.js');
 var bittrex = require('node-bittrex-api');
-bittrex.options({
-  'apikey' : 'c9bb8f0994634d92acf050acd899c173',
-  'apisecret' : '8af924252c8a4947b520a01607c5daea',
-});
 var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
 var i = 0;
 var vbid, vdidtxt;
 var vask, vasktxt;
 var vlast, vlasttxt;
+var vaskcompra = 0.00000000;
+var vporcesperado = 0.01;
+var vporcactual = 0;
+var vunicompraini = 100;
+var vuniacumcompra = vunicompraini;
+var vprofoper = 0;
+var vaccion = '';
+var vestado_op = 0;
 var vcliente = 'Jose Mejia';
-var vspread, vid_op, vmercado = 'BTC-ETH', vestado_op, vtipo_op, vunicompradas, vvalorcompra, vacumcompra, vprofoper;
-var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, vvalorventa, vdiferenciavc, vporcentajedifvc;
+var vspread, vid_op, vid_opant, vmercado = 'BTC-ETH', vtipo_op, vvalorcompra, vacumcompra;
+var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, vvalorventa, vdiferenciavc;
 
 {
+
+	bittrex.options({
+	  'apikey' : 'c9bb8f0994634d92acf050acd899c173',
+	  'apisecret' : '8af924252c8a4947b520a01607c5daea',
+	});
+
 	wstream.write( 'Numero, Hora, Bid, Ask, Last' );
 	wstream.write('\n');
+	vacumcompra = 0;
+	vvalorcompra = 0;
+	vid_op = 0;
+	funtraerdatosbd();
 	setInterval(fungetticker, 5000);
 }
 
@@ -25,29 +39,88 @@ function fungetticker()
 {
 	bittrex.getticker( { market : vmercado }, function( data, err ) 
 	{	
-		if (err) 
-		{
+		if (err) {
     		return console.error(err);
-  		}
-		vbid = data.result.Bid;
-		vask = data.result.Ask;
-		vlast = data.result.Last;
+  		} 
+		vbid = data.result.Bid.toNumber();
+		vask = data.result.Ask.toNumber();
+		vlast = data.result.Last.toNumber();
 		vbidtxt = funponerCerosDer(vbid.toString(), 10);
 		vasktxt = funponerCerosDer(vask.toString(), 10);
 		vlasttxt = funponerCerosDer(vlast.toString(), 10);
 		funcalculardatos();
+		funoperacion();
 		funescribirarchivo();
 	}  	
 					 );
 }
+
+function funoperacion()
+{
+	if (vestado_op = 0){ // si no hay operacion abierta
+		if (vask > vaskant) and (vaskant < vaskant2) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
+			vestado_op = 1;
+			vaccion = 'Comprar';
+			//funcompra();
+
+		}
+	} else {
+
+		vdiferenciavc = (vbid - vaskcompra) * vuniacumcompra 
+		vporcactual = vdiferenciavc / vvalorcompra;
+		if (vporcactual > vporcesperado || vporcactual < -vporcesperado) {
+			if (vporcactual > vporcesperado) {
+				//funcompra();
+				vaccion = 'Recomprar';
+			} else if (vporcactual < -vporcesperado) {
+				//funventa();
+				vaccion = 'Vender';
+			}
+		}
+	}
+}
+
+function funcompra()
+{
+	vaskcompra = vask;
+	vvalorcompra = vuniacumcompra * vask;
+	vacumcompra = vacumcompra + vvalorcompra;
+	vprofoper = vprofoper + 1;
+	// llamar aqui la funcion de compra: parametros : vuniacumcompra, vvalorcompra.
+	// llamado funcion
+	if (vprofoper > 1) {
+		vuniacumcompra = vuniacumcompra + vuniacumcompra;
+	}
+	vvaloravender = vvalorcompra * (vporcesperado + 1);
+	vvalorarecomprar = vvalorcompra - (vvalorcompra * vporcesperado);
+	vuniarecomprar = vuniacumcompra;
+
+}
+function funventa()
+{
+	vestado_op = 0;
+	vid_opant = vid_op;
+	vacumcompra = 0;
+	vuniacumcompra = vunicompraini;
+
+}
+
 function funcalculardatos()
 {
 	vspread = vask - vbid;
-	vid_op = i; // buscar en base de datos el id de las operaciones abiertas, si no hay ninguna, traer un nuevo id_op.
+	vid_op = i; // buscar en base de datos el id de la operacion abierta, si no hay ninguna, traer un nuevo id_op.
 	vestado_op = 'Abierta';
 	vtipo_op = 'Compra'; // traer el tipo de op de la base de datos. si no hay op abierta, el tipo de op será 'compra'.
 	vunicompradas = 100; // traer de la base de datos el numero de unidades a comprar para este cliente en este mercado.
+	vvalorcompra = vask;
+	vacumcompra = vacumcompra + vvalorcompra; // traer el valor acumulado de esta operacion de la base de datos.
+}
 
+function funtraerdatosbd()
+// Función que al arrancar la ejecución del programa busca en base de datos el estado de la operación actual
+// y trae los mismos valores de funcalculardatos.
+	null;
+{
 
 }
 function funescribirarchivo()
