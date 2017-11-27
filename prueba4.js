@@ -73,9 +73,12 @@ function funoperacion()
 		}
 	} else {
 		console.log('3');
-		console.log('vestado_op: ' + vestado_op);
 		vdiferenciavc = (vbid - vaskcompra) * vuniacumcompra 
 		vporcactual = vdiferenciavc / vvalorcompra;
+		console.log('vdiferenciavc: ' + vdiferenciavc);
+		console.log('vporcactual: ' + vporcactual);
+		console.log('vporcactual: ' + vporcactual);
+
 		if (vporcactual > vporcesperado || vporcactual < -vporcesperado) {
 			console.log('4');
 			if (vporcactual > vporcesperado) {
