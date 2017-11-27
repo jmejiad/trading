@@ -57,10 +57,8 @@ function fungetticker()
 
 function funoperacion()
 {
-	if (vestado_op = 0){ 
-	// si no hay operacion abierta
-		if (vask > vaskant) and (vaskant < vaskant2) { 
-		// si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
+	if (vestado_op = 0){ // si no hay operacion abierta
+		if ((vask > vaskant) && (vaskant < vaskant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
 			vestado_op = 1;
 			vaccion = 'Comprar';
 			//funcompra();
