@@ -75,7 +75,7 @@ function funoperacion()
 		if (vporcactual > vporcesperado || vporcactual < -vporcesperado) {
 			if (vporcactual > vporcesperado) {
 				//funcompra();
-				vaccion = 'Recomprar';
+				vaccion = 'No entiendo';
 			} else if (vporcactual < -vporcesperado) {
 				//funventa();
 				vaccion = 'Vender';
