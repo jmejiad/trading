@@ -68,6 +68,7 @@ function funoperacion()
 	console.log('\n');
 	console.log('------  INICIO -----');
 	console.log('vestado_op: ' + vestado_op);
+	console.log('i: ' + i);
 	if (i > 3){
 		if (vestado_op = 0){ // si no hay operacion abierta
 			if ((vask > vaskant) && (vaskant < vaskant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
