@@ -69,13 +69,13 @@ function funoperacion()
 			vaccion = 'Comprar';
 			//funcompra();
 		}
-	} else if (vestado_op = 1) {
+	} else {
 		vdiferenciavc = (vbid - vaskcompra) * vuniacumcompra 
 		vporcactual = vdiferenciavc / vvalorcompra;
 		if (vporcactual > vporcesperado || vporcactual < -vporcesperado) {
 			if (vporcactual > vporcesperado) {
 				//funcompra();
-				vaccion = 'No entiendo';
+				vaccion = 'Recomprar';
 			} else if (vporcactual < -vporcesperado) {
 				//funventa();
 				vaccion = 'Vender';
