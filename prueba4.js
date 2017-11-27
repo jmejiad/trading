@@ -134,6 +134,10 @@ function funescribirarchivo()
 	var vhora = funobtenerhora();
 	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + vaccion);
 	console.log( vlinetxt );
+	console.log('vestado_op: ' + vestado_op);
+	console.log('vask: ' + vask);
+	console.log('vaskant: ' + vaskant);
+	console.log('vaskant2: ' + vaskant2);
 	wstream.write( vlinetxt );
 	wstream.write('\n');
 }
