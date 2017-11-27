@@ -113,7 +113,7 @@ function funcalculardatos()
 {
 	vspread = vask - vbid;
 	vid_op = i; // buscar en base de datos el id de la operacion abierta, si no hay ninguna, traer un nuevo id_op.
-	vestado_op = 'Abierta';
+	//vestado_op = 0;
 	vtipo_op = 'Compra'; // traer el tipo de op de la base de datos. si no hay op abierta, el tipo de op será 'compra'.
 	vunicompradas = 100; // traer de la base de datos el numero de unidades a comprar para este cliente en este mercado.
 	vvalorcompra = vask;
