@@ -67,8 +67,11 @@ function funoperacion()
 {
 	console.log('\n');
 	console.log('------  INICIO -----');
-	console.log('vestado_op: ' + vestado_op);
 	console.log('i: ' + i);
+	console.log('vestado_op: ' + vestado_op);
+	console.log('vask: ' + vestado_op);
+	console.log('vaskant: ' + vestado_op);
+	console.log('vaskant2: ' + vestado_op);
 	if (i > 3){
 		if (vestado_op = 0){ // si no hay operacion abierta
 			if ((vask > vaskant) && (vaskant < vaskant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
@@ -77,8 +80,14 @@ function funoperacion()
 				//funcompra();
 			}
 		} else {
-			vdiferenciavc = (vbid - vaskcompra) * vuniacumcompra;
+			if vprofoper = 1{
+				vdiferenciavc = (vbid - vask) * vuniacumcompra;
+			} else {
+				vdiferenciavc = (vbid - vaskcompra) * vuniacumcompra;
+			}
 			vporcactual = (vdiferenciavc / vvalorcompra);
+			console.log('vprofoper: ' + vprofoper);
+			console.log('vask: ' + vask);
 			console.log('vaskcompra: ' + vaskcompra);
 			console.log('vdiferenciavc: ' + vdiferenciavc);
 			console.log('vporcactual: ' + vporcactual);
