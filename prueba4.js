@@ -47,17 +47,19 @@ function fungetticker()
 		vask1 = data.result.Ask;
 		vlast1 = data.result.Last;
 		vbid = Number(vbid1);
-		vaskant2 = vaskant;
-		vaskant = vask;
-		vask = Number(vask1);
 		vlast = Number(vlast1);
+		if (Number(vask1) != vaskant) {
+			vaskant2 = vaskant;
+			vaskant = vask;
+			vask = Number(vask1);
+		}
 		vbidtxt = funponerCerosDer(vbid.toString(), 10);
 		vasktxt = funponerCerosDer(vask.toString(), 10);
 		vlasttxt = funponerCerosDer(vlast.toString(), 10);
 		funcalculardatos();
 		vaccion = '';
 		funoperacion();
-		//funescribirarchivo();
+		funescribirarchivo();
 		i = i + 1;
 	}  	
 					);
@@ -158,10 +160,6 @@ function funescribirarchivo()
 	var vhora = funobtenerhora();
 	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt);
 	console.log( vlinetxt );
-	console.log('vestado_op: ' + vestado_op);
-	console.log('vask: ' + vask);
-	console.log('vaskant: ' + vaskant);
-	console.log('vaskant2: ' + vaskant2);
 	wstream.write( vlinetxt );
 	wstream.write('\n');
 }
