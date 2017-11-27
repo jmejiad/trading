@@ -2,7 +2,7 @@
 var bittrex = require('node-bittrex-api');
 var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
-var i = 0;
+var i = 1;
 var vbid, vvid1, vdidtxt;
 var vask = 0, vask1, vasktxt;
 var vaskant = 0, vaskant2 = 0;
@@ -58,6 +58,7 @@ function fungetticker()
 		vaccion = '';
 		funoperacion();
 		funescribirarchivo();
+		i = i + 1;
 	}  	
 					);
 }
@@ -65,28 +66,30 @@ function fungetticker()
 function funoperacion()
 {
 	console.log('vestado_op: ' + vestado_op);
-	if (vestado_op = 0){ // si no hay operacion abierta
-		if ((vask > vaskant) && (vaskant < vaskant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
-			vestado_op = 1;
-			console.log('Acción: Comprar');
-			//funcompra();
-		}
-	} else {
-		vdiferenciavc = (vbid - vaskcompra) * vuniacumcompra;
-		vporcactual = (vdiferenciavc / vvalorcompra);
-		console.log('vaskcompra: ' + vaskcompra);
-		console.log('vdiferenciavc: ' + vdiferenciavc);
-		console.log('vporcactual: ' + vporcactual);
-		console.log('vporcesperado: ' + vporcesperado);
-		console.log('vuniacumcompra: ' + vuniacumcompra);
+	if (i > 3){
+		if (vestado_op = 0){ // si no hay operacion abierta
+			if ((vask > vaskant) && (vaskant < vaskant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
+				vestado_op = 1;
+				console.log('Acción: Comprar');
+				//funcompra();
+			}
+		} else {
+			vdiferenciavc = (vbid - vaskcompra) * vuniacumcompra;
+			vporcactual = (vdiferenciavc / vvalorcompra);
+			console.log('vaskcompra: ' + vaskcompra);
+			console.log('vdiferenciavc: ' + vdiferenciavc);
+			console.log('vporcactual: ' + vporcactual);
+			console.log('vporcesperado: ' + vporcesperado);
+			console.log('vuniacumcompra: ' + vuniacumcompra);
 
-		if (vporcactual > vporcesperado || vporcactual < -vporcesperado) {
-			if (vporcactual > vporcesperado) {
-				funcompra();
-				console.log('Acción: Recomprar');
-			} else if (vporcactual < -vporcesperado) {
-				funventa();
-				console.log('Acción: Vender');
+			if (vporcactual > vporcesperado || vporcactual < -vporcesperado) {
+				if (vporcactual > vporcesperado) {
+					funcompra();
+					console.log('Acción: Recomprar');
+				} else if (vporcactual < -vporcesperado) {
+					funventa();
+					console.log('Acción: Vender');
+				}
 			}
 		}
 	}
@@ -114,6 +117,7 @@ function funventa()
 	vid_opant = vid_op;
 	vacumcompra = 0;
 	vuniacumcompra = vunicompraini;
+	i = 1;
 
 }
 
@@ -138,7 +142,6 @@ function funcalculardatos()
 
 function funescribirarchivo()
 {
-	i = i + 1;
 	var itxt = i.toString();
 	var vhora = funobtenerhora();
 	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt);
