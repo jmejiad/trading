@@ -25,7 +25,7 @@ var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, 
 	  'apisecret' : '8af924252c8a4947b520a01607c5daea',
 	});
 
-	wstream.write( 'Numero, Hora, Bid, Ask, Last' );
+	wstream.write( 'Numero, Hora, Bid, Ask, Last, Accion' );
 	wstream.write('\n');
 	vacumcompra = 0;
 	vvalorcompra = 0;
@@ -116,11 +116,11 @@ function funcalculardatos()
 	vacumcompra = vacumcompra + vvalorcompra; // traer el valor acumulado de esta operacion de la base de datos.
 }
 
-function funtraerdatosbd()
+//function funtraerdatosbd()
 // Función que al arrancar la ejecución del programa busca en base de datos el estado de la operación actual
 // y trae los mismos valores de funcalculardatos.
-	null;
-{
+	//null;
+//{
 
 }
 function funescribirarchivo()
@@ -128,7 +128,7 @@ function funescribirarchivo()
 	i = i + 1;
 	var itxt = i.toString();
 	var vhora = funobtenerhora();
-	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + '' + vaccion);
+	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + vaccion);
 	console.log( vlinetxt );
 	wstream.write( vlinetxt );
 	wstream.write('\n');
