@@ -3,9 +3,9 @@ var bittrex = require('node-bittrex-api');
 var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
 var i = 0;
-var vbid, vdidtxt;
-var vask, vasktxt;
-var vlast, vlasttxt;
+var vbid, vvid1, vdidtxt;
+var vask, vask1, vasktxt;
+var vlast, vlast1, vlasttxt;
 var vaskcompra = 0.00000000;
 var vporcesperado = 0.01;
 var vporcactual = 0;
@@ -42,9 +42,12 @@ function fungetticker()
 		if (err) {
     		return console.error(err);
   		} 
-		vbid = data.result.Bid.toNumber();
-		vask = data.result.Ask.toNumber();
-		vlast = data.result.Last.toNumber();
+		vbid1 = data.result.Bid;
+		vask1 = data.result.Ask;
+		vlast1 = data.result.Last;
+		vbid = vbid1.Tonumber();
+		vask = vask1.Tonumber();
+		vlast = vlast1.Tonumber();
 		vbidtxt = funponerCerosDer(vbid.toString(), 10);
 		vasktxt = funponerCerosDer(vask.toString(), 10);
 		vlasttxt = funponerCerosDer(vlast.toString(), 10);
