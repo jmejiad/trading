@@ -122,7 +122,8 @@ function funcalculardatos()
 	//null;
 //{
 
-}
+//}
+
 function funescribirarchivo()
 {
 	i = i + 1;
