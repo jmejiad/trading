@@ -58,25 +58,31 @@ function fungetticker()
 		funoperacion();
 		funescribirarchivo();
 	}  	
-					 );
+					);
 }
 
 function funoperacion()
 {
 	if (vestado_op = 0){ // si no hay operacion abierta
+console.log('1');
 		if ((vask > vaskant) && (vaskant < vaskant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
+console.log('2');
 			vestado_op = 1;
 			vaccion = 'Comprar';
 			//funcompra();
 		}
 	} else {
+console.log('3');
 		vdiferenciavc = (vbid - vaskcompra) * vuniacumcompra 
 		vporcactual = vdiferenciavc / vvalorcompra;
 		if (vporcactual > vporcesperado || vporcactual < -vporcesperado) {
+console.log('4');
 			if (vporcactual > vporcesperado) {
+console.log('5');
 				//funcompra();
 				vaccion = 'Recomprar';
 			} else if (vporcactual < -vporcesperado) {
+console.log('6');
 				//funventa();
 				vaccion = 'Vender';
 			}
