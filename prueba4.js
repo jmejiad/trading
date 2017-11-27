@@ -4,7 +4,8 @@ var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
 var i = 0;
 var vbid, vvid1, vdidtxt;
-var vask, vask1, vasktxt;
+var vask = 0, vask1, vasktxt;
+var vaskant = 0, vaskant2 = 0;
 var vlast, vlast1, vlasttxt;
 var vaskcompra = 0.00000000;
 var vporcesperado = 0.01;
@@ -46,6 +47,8 @@ function fungetticker()
 		vask1 = data.result.Ask;
 		vlast1 = data.result.Last;
 		vbid = Number(vbid1);
+		vaskant2 = vaskant;
+		vaskant = vask;
 		vask = Number(vask1);
 		vlast = Number(vlast1);
 		vbidtxt = funponerCerosDer(vbid.toString(), 10);
