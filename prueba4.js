@@ -8,7 +8,7 @@ var vask = 0, vask1, vasktxt;
 var vaskant = 0, vaskant2 = 0;
 var vlast, vlast1, vlasttxt;
 var vaskcompra = 0.00000000;
-var vporcesperado = 0.01;
+var vporcesperado = 1.00;
 var vporcactual = 0;
 var vunicompraini = 100;
 var vuniacumcompra = vunicompraini;
@@ -91,6 +91,7 @@ function funoperacion()
 			}
 			vporcactual = (vdiferenciavc / vvalorcompra);
 			console.log('vprofoper:          ' + vprofoper);
+			console.log('vbid:               ' + vbid);
 			console.log('vask:               ' + vask);
 			console.log('vaskcompra:         ' + vaskcompra);
 			console.log('vdiferenciavc:      ' + vdiferenciavc);
