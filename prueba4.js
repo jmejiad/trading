@@ -67,8 +67,7 @@ function funoperacion()
 {
 	console.log('\n');
 	//console.log('------ INICIO -----');
-	console.log('\x1b[4m', '------ INICIO -----' ,'\x1b[0m');
-	console.log('\x1b[34m', 'i: ' + i,'\x1b[0m');
+	console.log('\x1b[47m','\x1b[30m','------ INICIO -----','\x1b[0m');
 	console.log('i: ' + i);
 	console.log('vestado_op: ' + vestado_op);
 	console.log('vask: ' + vask);
@@ -82,7 +81,7 @@ function funoperacion()
 			if ((vask > vaskant) && (vaskant < vaskant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
 				vestado_op = 1;
 				//console.log('Acción: Comprar');
-				console.log('\x1b[47m', 'Acción: Comprar' ,'\x1b[0m');
+				console.log('\x1b[33m','Acción: Comprar','\x1b[0m');
 				funcompra();
 			}
 		} else {
@@ -103,11 +102,11 @@ function funoperacion()
 			if (vporcactual > vporcesperado || vporcactual < -vporcesperado) {
 				if (vporcactual > vporcesperado) {
 					funcompra();
-					console.log('\x1b[36m', 'Acción: Recomprar' ,'\x1b[0m');
+					console.log('\x1b[31m','Acción: Recomprar','\x1b[0m');
 					//console.log('Acción: Recomprar');
 				} else if (vporcactual < -vporcesperado) {
 					funventa();
-					console.log('\x1b[42m', 'Acción: Vender' ,'\x1b[0m');
+					console.log('\x1b[32m','Acción: Vender','\x1b[0m');
 					//console.log('Acción: Vender');
 				}
 			}
