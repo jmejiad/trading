@@ -3,6 +3,7 @@ var bittrex = require('node-bittrex-api');
 var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
 var i = 1;
+var contsb = 0;
 var ibuytosell = 0; 
 var vbid, vvid1, vdidtxt;
 var vask = 0, vask1, vasktxt;
@@ -75,6 +76,17 @@ function funoperacion()
 	console.log('vaskant:            ' + vaskant);
 	console.log('vaskant2:           ' + vaskant2);
 	console.log('vask > vaskant:     ' + (vask > vaskant));
+	if (vask > vaskant) {
+		console.log('\033[32m', 'Sube', '\033[0m');
+		contsb = contsb + 1;
+		else if (vask < vaskant){
+			console.log('\033[31m', 'Baja', '\033[0m');
+			contsb = contsb - 1;
+			else{
+				console.log('Igual');
+			}
+		}
+	}
 	console.log('vaskant < vaskant2: ' + (vaskant < vaskant2));
 	
 	if (i > 2){
@@ -93,6 +105,7 @@ function funoperacion()
 //			}
 			vporcactual = (vdiferenciavc / vvalorcompra);
 			console.log('vprofoper:          ' + vprofoper);
+			console.log('contsb:             ' + contsb);
 			console.log('vbid:               ' + vbid);
 			console.log('vask:               ' + vask);
 			console.log('vaskcompra:         ' + vaskcompra);
@@ -132,6 +145,7 @@ function funcompra()
 	vvalorarecomprar = vvalorcompra - (vvalorcompra * vporcesperado);
 	vuniarecomprar = vuniacumcompra;
 	ibuytosell = 1;
+	contsb = 0;
 
 }
 function funventa()
@@ -143,6 +157,7 @@ function funventa()
 	vprofoper = 1;
 	i = 0;
 	ibuytosell = 1;
+	contsb = 0;
 
 }
 
