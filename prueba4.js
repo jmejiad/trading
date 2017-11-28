@@ -56,7 +56,6 @@ function fungetticker()
 		vbidtxt = funponerCerosDer(vbid.toString(), 10);
 		vasktxt = funponerCerosDer(vask.toString(), 10);
 		vlasttxt = funponerCerosDer(vlast.toString(), 10);
-		funcalculardatos();
 		vaccion = '';
 		funoperacion();
 		//funescribirarchivo();
@@ -76,17 +75,16 @@ function funoperacion()
 	console.log('vaskant:            ' + vaskant);
 	console.log('vaskant2:           ' + vaskant2);
 	console.log('vask > vaskant:     ' + (vask > vaskant));
+	console.log('vaskant < vaskant2: ' + (vaskant < vaskant2));
 	if (vask > vaskant) {
-		console.log('\033[32m', 'Sube', '\033[0m');
+		console.log('\033[32m','Sube','\033[0m');
 		contsb = (contsb + 1);
 	}	else if (vask < vaskant) {
-			console.log('\033[31m', 'Baja', '\033[0m');
+			console.log('\033[31m','Baja','\033[0m');
 			contsb = (contsb - 1);
 		}	else {
 				console.log('Igual');
 			}
-	
-	console.log('vaskant < vaskant2: ' + (vaskant < vaskant2));
 	
 	if (i > 2){
 		if (vestado_op == 0){ // si no hay operacion abierta
@@ -113,17 +111,14 @@ function funoperacion()
 			console.log('vvalorcompra:       ' + vvalorcompra);
 			console.log('vporcesperado:      ' + vporcesperado);
 			console.log('vuniacumcompra:     ' + vuniacumcompra);
-
-			if (vporcactual > vporcesperado || vporcactual < -vporcesperado) {
-				if (vporcactual > vporcesperado) {
-					funcompra();
-					console.log('\033[31m','Acción: Recomprar','\033[0m');
-					//console.log('Acción: Recomprar');
-				} else if (vporcactual < -vporcesperado) {
-					funventa();
-					console.log('\033[32m','Acción: Vender','\033[0m');
-					//console.log('Acción: Vender');
-				}
+			if (vporcactual < -vporcesperado) {
+				funcompra();
+				console.log('\033[31m','Acción: Recomprar','\033[0m');
+				//console.log('Acción: Recomprar');
+			} else if (vporcactual > vporcesperado) {
+				funventa();
+				console.log('\033[32m','Acción: Vender','\033[0m');
+				//console.log('Acción: Vender');
 			}
 		}
 	}
@@ -146,11 +141,13 @@ function funcompra()
 	ibuytosell = 1;
 	contsb = 0;
 
+
 }
 function funventa()
 {
 	vestado_op = 0;
 	vid_opant = vid_op;
+	vid_op = vid_op + 1;
 	vacumcompra = 0;
 	vuniacumcompra = vunicompraini;
 	vprofoper = 1;
@@ -159,24 +156,6 @@ function funventa()
 	contsb = 0;
 
 }
-
-function funcalculardatos()
-{
-	vspread = vask - vbid;
-	vid_op = i; // buscar en base de datos el id de la operacion abierta, si no hay ninguna, traer un nuevo id_op.
-	//vestado_op = 0;
-	vtipo_op = 'Compra'; // traer el tipo de op de la base de datos. si no hay op abierta, el tipo de op será 'compra'.
-	vunicompradas = 100; // traer de la base de datos el numero de unidades a comprar para este cliente en este mercado.
-	vacumcompra = vacumcompra + vvalorcompra; // traer el valor acumulado de esta operacion de la base de datos.
-}
-
-//function funtraerdatosbd()
-// Función que al arrancar la ejecución del programa busca en base de datos el estado de la operación actual
-// y trae los mismos valores de funcalculardatos.
-	//null;
-//{
-
-//}
 
 function funescribirarchivo()
 {
