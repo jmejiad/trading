@@ -3,12 +3,13 @@ var bittrex = require('node-bittrex-api');
 var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
 var i = 1;
+var ibuytosell = 0; 
 var vbid, vvid1, vdidtxt;
 var vask = 0, vask1, vasktxt;
 var vaskant = 0, vaskant2 = 0;
 var vlast, vlast1, vlasttxt;
 var vaskcompra = 0.00000000;
-var vporcesperado = 1.00;
+var vporcesperado = 0.01;
 var vporcactual = 0;
 var vunicompraini = 100;
 var vuniacumcompra = vunicompraini;
@@ -69,6 +70,7 @@ function funoperacion()
 	//console.log('------ INICIO -----');
 	console.log('\033[47m','\033[30m','Iteracion: ' + i,'\033[0m');
 	console.log('vestado_op:         ' + vestado_op);
+	console.log('vbid:               ' + vbid);
 	console.log('vask:               ' + vask);
 	console.log('vaskant:            ' + vaskant);
 	console.log('vaskant2:           ' + vaskant2);
@@ -95,8 +97,8 @@ function funoperacion()
 			console.log('vask:               ' + vask);
 			console.log('vaskcompra:         ' + vaskcompra);
 			console.log('vdiferenciavc:      ' + vdiferenciavc);
-			console.log('vvalorcompra:       ' + vvalorcompra);
 			console.log('vporcactual:        ' + vporcactual);
+			console.log('vvalorcompra:       ' + vvalorcompra);
 			console.log('vporcesperado:      ' + vporcesperado);
 			console.log('vuniacumcompra:     ' + vuniacumcompra);
 
@@ -129,6 +131,7 @@ function funcompra()
 	vvaloravender = vvalorcompra * (vporcesperado + 1);
 	vvalorarecomprar = vvalorcompra - (vvalorcompra * vporcesperado);
 	vuniarecomprar = vuniacumcompra;
+	ibuytosell = 1;
 
 }
 function funventa()
@@ -139,6 +142,7 @@ function funventa()
 	vuniacumcompra = vunicompraini;
 	vprofoper = 1;
 	i = 0;
+	ibuytosell = 1;
 
 }
 
