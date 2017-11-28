@@ -34,7 +34,7 @@ var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, 
 	vvalorcompra = 0;
 	vid_op = 0;
 	//funtraerdatosbd();
-	setInterval(fungetticker, 20000);
+	setInterval(fungetticker, 15000);
 }
 
 
