@@ -86,11 +86,11 @@ function funoperacion()
 				funcompra();
 			}
 		} else {
-			if (vprofoper == 1) {
-				vdiferenciavc = (vbid - vask) * vuniacumcompra;
-			} else {
-				vdiferenciavc = (vbid - vaskcompra) * vuniacumcompra;
-			}
+//			if (vprofoper == 1) {
+//				vdiferenciavc = (vbid - vask) * vuniacumcompra;
+//			} else {
+			vdiferenciavc = (vbid - vaskcompra) * vuniacumcompra;
+//			}
 			vporcactual = (vdiferenciavc / vvalorcompra);
 			console.log('vprofoper:          ' + vprofoper);
 			console.log('vbid:               ' + vbid);
