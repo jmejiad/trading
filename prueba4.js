@@ -59,7 +59,7 @@ function fungetticker()
 		funcalculardatos();
 		vaccion = '';
 		funoperacion();
-		funescribirarchivo();
+		//funescribirarchivo();
 		i = i + 1;
 	}  	
 					);
@@ -78,15 +78,14 @@ function funoperacion()
 	console.log('vask > vaskant:     ' + (vask > vaskant));
 	if (vask > vaskant) {
 		console.log('\033[32m', 'Sube', '\033[0m');
-		contsb = contsb + 1;
-		else if (vask < vaskant){
+		contsb = (contsb + 1);
+	}	else if (vask < vaskant) {
 			console.log('\033[31m', 'Baja', '\033[0m');
-			contsb = contsb - 1;
-			else{
+			contsb = (contsb - 1);
+		}	else {
 				console.log('Igual');
 			}
-		}
-	}
+	
 	console.log('vaskant < vaskant2: ' + (vaskant < vaskant2));
 	
 	if (i > 2){
