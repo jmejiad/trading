@@ -67,12 +67,12 @@ function funoperacion()
 {
 	console.log('\n');
 	//console.log('------ INICIO -----');
-	console.log('\x1b[47m','\x1b[7m','\x1b[30m','\x1b[7m','ITERACION: ' + i,'\x1b[0m');
-	console.log('vestado_op: ' + vestado_op);
-	console.log('vask: ' + vask);
-	console.log('vaskant: ' + vaskant);
-	console.log('vaskant2: ' + vaskant2);
-	console.log('vask > vaskant: ' + (vask > vaskant));
+	console.log('\033[47m','\033[30m','Iteracion: ' + i,'\033[0m');
+	console.log('vestado_op:         ' + vestado_op);
+	console.log('vask:               ' + vask);
+	console.log('vaskant:            ' + vaskant);
+	console.log('vaskant2:           ' + vaskant2);
+	console.log('vask > vaskant:     ' + (vask > vaskant));
 	console.log('vaskant < vaskant2: ' + (vaskant < vaskant2));
 	
 	if (i > 2){
@@ -80,7 +80,7 @@ function funoperacion()
 			if ((vask > vaskant) && (vaskant < vaskant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
 				vestado_op = 1;
 				//console.log('Acción: Comprar');
-				console.log('\x1b[33m','Acción: Comprar','\x1b[0m');
+				console.log('\033[33m','Acción: Comprar','\033[0m');
 				funcompra();
 			}
 		} else {
@@ -90,22 +90,23 @@ function funoperacion()
 				vdiferenciavc = (vbid - vaskcompra) * vuniacumcompra;
 			}
 			vporcactual = (vdiferenciavc / vvalorcompra);
-			console.log('vprofoper: ' + vprofoper);
-			console.log('vask: ' + vask);
-			console.log('vaskcompra: ' + vaskcompra);
-			console.log('vdiferenciavc: ' + vdiferenciavc);
-			console.log('vporcactual: ' + vporcactual);
-			console.log('vporcesperado: ' + vporcesperado);
-			console.log('vuniacumcompra: ' + vuniacumcompra);
+			console.log('vprofoper:          ' + vprofoper);
+			console.log('vask:               ' + vask);
+			console.log('vaskcompra:         ' + vaskcompra);
+			console.log('vdiferenciavc:      ' + vdiferenciavc);
+			console.log('vvalorcompra:       ' + vvalorcompra);
+			console.log('vporcactual:        ' + vporcactual);
+			console.log('vporcesperado:      ' + vporcesperado);
+			console.log('vuniacumcompra:     ' + vuniacumcompra);
 
 			if (vporcactual > vporcesperado || vporcactual < -vporcesperado) {
 				if (vporcactual > vporcesperado) {
 					funcompra();
-					console.log('\x1b[31m','\x1b[7m','Acción: Recomprar','\x1b[0m');
+					console.log('\033[31m','Acción: Recomprar','\033[0m');
 					//console.log('Acción: Recomprar');
 				} else if (vporcactual < -vporcesperado) {
 					funventa();
-					console.log('\x1b[32m','\x1b[7m','Acción: Vender','\x1b[0m');
+					console.log('\033[32m','Acción: Vender','\033[0m');
 					//console.log('Acción: Vender');
 				}
 			}
