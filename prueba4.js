@@ -149,7 +149,6 @@ function funcalculardatos()
 	//vestado_op = 0;
 	vtipo_op = 'Compra'; // traer el tipo de op de la base de datos. si no hay op abierta, el tipo de op será 'compra'.
 	vunicompradas = 100; // traer de la base de datos el numero de unidades a comprar para este cliente en este mercado.
-	vvalorcompra = vask;
 	vacumcompra = vacumcompra + vvalorcompra; // traer el valor acumulado de esta operacion de la base de datos.
 }
 
