@@ -67,8 +67,7 @@ function funoperacion()
 {
 	console.log('\n');
 	//console.log('------ INICIO -----');
-	console.log('\x1b[47m','\x1b[30m','------ INICIO -----','\x1b[0m');
-	console.log('i: ' + i);
+	console.log('\x1b[47m','\x1b[7m','\x1b[30m','\x1b[7m','ITERACION: ' + i,'\x1b[0m');
 	console.log('vestado_op: ' + vestado_op);
 	console.log('vask: ' + vask);
 	console.log('vaskant: ' + vaskant);
@@ -102,11 +101,11 @@ function funoperacion()
 			if (vporcactual > vporcesperado || vporcactual < -vporcesperado) {
 				if (vporcactual > vporcesperado) {
 					funcompra();
-					console.log('\x1b[31m','Acción: Recomprar','\x1b[0m');
+					console.log('\x1b[31m','\x1b[7m','Acción: Recomprar','\x1b[0m');
 					//console.log('Acción: Recomprar');
 				} else if (vporcactual < -vporcesperado) {
 					funventa();
-					console.log('\x1b[32m','Acción: Vender','\x1b[0m');
+					console.log('\x1b[32m','\x1b[7m','Acción: Vender','\x1b[0m');
 					//console.log('Acción: Vender');
 				}
 			}
