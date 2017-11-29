@@ -174,7 +174,15 @@ function funescribirarchivo()
 		var vcambio2 = 'false'
 	}
 
-	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + string(vbidant) + ',' + string(vbidant2) + ',' + vcambio1 + ',' + vcambio2 + ',' + string(vprofoper) + ',' + string(contsb) + ',' + string(vaskcompra) + ',' + string(vdiferenciavc) + ',' + string(vporcactual) + ',' + string(vporcesperado) + ',' + string(vvalorcompra) + ',' + string(vuniacumcompra));
+	var vprofopertxt = string(vprofoper); 
+	var vcontsbtxt = string(contsb);
+	var vaskcompratxt = string(vaskcompra);
+	var vdiferenciavctxt = string(vdiferenciavc);
+	var vporcactualtxt = string(vporcactual);
+	var vporcesperadotxt = string(vporcesperado);
+	var vvalorcompratxt = string(vvalorcompra);
+	var vuniacumcompratxt = string(vuniacumcompra);
+	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + string(vbidant) + ',' + string(vbidant2) + ',' + vcambio1 + ',' + vcambio2 + ',' + vprofopertxt + ',' + contsbtxt + ',' + vaskcompratxt + ',' + vdiferenciavctxt + ',' + vporcactualtxt + ',' + vporcesperadotxt + ',' + vvalorcompratxt + ',' + vuniacumcompratxt);
 	console.log( vlinetxt );
 	wstream.write( vlinetxt );
 	wstream.write('\n');
