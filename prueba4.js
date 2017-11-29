@@ -28,7 +28,7 @@ var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, 
 	  'apisecret' : '8af924252c8a4947b520a01607c5daea',
 	});
 
-	wstream.write( 'Numero, Hora, Bid, Ask, Last' );
+	wstream.write( 'Numero, Hora, Bid, Ask, Last, vbidant, vbidant2, vbid>vbidant, vbidant<vbidant2, vprofoper, contsb, vaskcompra, vdiferenciavc, vporcactual, vporcesperado, vvalorcompra, vuniacumcompra' );
 	wstream.write('\n');
 	vacumcompra = 0;
 	vvalorcompra = 0;
@@ -58,7 +58,7 @@ function fungetticker()
 		vlasttxt = funponerCerosDer(vlast.toString(), 10);
 		vaccion = '';
 		funoperacion();
-		//funescribirarchivo();
+		funescribirarchivo();
 		i = i + 1;
 	}  	
 					);
@@ -108,8 +108,8 @@ function funoperacion()
 			console.log('vaskcompra:         ' + vaskcompra);
 			console.log('vdiferenciavc:      ' + vdiferenciavc);
 			console.log('vporcactual:        ' + vporcactual);
-			console.log('vvalorcompra:       ' + vvalorcompra);
 			console.log('vporcesperado:      ' + vporcesperado);
+			console.log('vvalorcompra:       ' + vvalorcompra);
 			console.log('vuniacumcompra:     ' + vuniacumcompra);
 			if (vporcactual < -vporcesperado) {
 				funcompra();
@@ -161,7 +161,8 @@ function funescribirarchivo()
 {
 	var itxt = i.toString();
 	var vhora = funobtenerhora();
-	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt);
+, , 
+	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + vbidant + ',' + vbidant2 + ',' + vbid>vbidant + ',' + vbidant<vbidant2 + ',' + vprofoper + ',' + contsb + ',' + vaskcompra + ',' + vdiferenciavc + ',' + vporcactual + ',' + vporcesperado + ',' + vvalorcompra + ',' + vuniacumcompra);
 	console.log( vlinetxt );
 	wstream.write( vlinetxt );
 	wstream.write('\n');
