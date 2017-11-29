@@ -88,7 +88,7 @@ function funoperacion()
 	
 	if (i > 2){
 		if (vestado_op == 0){ // si no hay operacion abierta
-			if ((vask > vbidant) && (vbidant < vbidant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
+			if ((vbid > vbidant) && (vbidant < vbidant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
 				vestado_op = 1;
 				//console.log('Acción: Comprar');
 				console.log('\033[33mAcción: Comprar','\033[0m');
