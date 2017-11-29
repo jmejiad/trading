@@ -79,7 +79,7 @@ function funoperacion()
 	if (vbid > vbidant) {
 		console.log('\033[32mSube','\033[0m');
 		contsb = (contsb + 1);
-	}	else if (vbidant < vbidant2) {
+	}	else if (vbid < vbidant) {
 			console.log('\033[31mBaja','\033[0m');
 			contsb = (contsb - 1);
 		}	else {
