@@ -71,7 +71,7 @@ function funoperacion()
 {
 	console.log('\n');
 	//console.log('------ INICIO -----');
-	console.log('\033[47m\033[30mIteracion:' + i + '\033[0m');
+	console.log('\033[47m\033[30mIteracion:' + id_op + '.' + i, '\033[0m');
 	console.log('vestado_op:         ' + vestado_op);
 	console.log('vask:               ' + vask);
 	console.log('vbid:               ' + vbid);
