@@ -62,7 +62,6 @@ function fungetticker()
 		funoperacion();
 		funescribirarchivo();
 		i = i + 1;
-		id_op = id_op + 1;
 	}  	
 					);
 }
