@@ -183,7 +183,7 @@ function funescribirarchivo()
 	var vvalorcompratxt = String(vvalorcompra);
 	var vuniacumcompratxt = String(vuniacumcompra);
 	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + String(vbidant) + ',' + String(vbidant2) + ',' + vcambio1 + ',' + vcambio2 + ',' + vprofopertxt + ',' + vcontsbtxt + ',' + vaskcompratxt + ',' + vdiferenciavctxt + ',' + vporcactualtxt + ',' + vporcesperadotxt + ',' + vvalorcompratxt + ',' + vuniacumcompratxt);
-	console.log( vlinetxt );
+	//console.log( vlinetxt );
 	wstream.write( vlinetxt );
 	wstream.write('\n');
 }
