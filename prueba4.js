@@ -150,8 +150,8 @@ function funventa()
 	vacumcompra = 0;
 	vdiferenciavcacum = vdiferenciavcacum + vdiferenciavc;
 	vvalorventa = vuniacumcompra * vbid;
-	console.log('\033[32mvvalorventa:        ' + vvalorventa'\033[0m');
-	console.log('\033[32mvdiferenciavcacum:  ' + vdiferenciavcacum'\033[0m');
+	console.log('\033[32mvvalorventa:        ' + vvalorventa, '\033[0m');
+	console.log('\033[32mvdiferenciavcacum:  ' + vdiferenciavcacum, '\033[0m');
 	vuniacumcompra = vunicompraini;
 	vprofoper = 0;
 	i = 0;
