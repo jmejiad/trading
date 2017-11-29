@@ -7,7 +7,7 @@ var contsb = 0;
 var ibuytosell = 0; 
 var vbid, vvid1, vdidtxt;
 var vask = 0, vask1, vasktxt;
-var vaskant = 0, vaskant2 = 0;
+var vbidant = 0, vbidant2 = 0;
 var vlast, vlast1, vlasttxt;
 var vaskcompra = 0.00000000;
 var vporcesperado = 0.01;
@@ -50,8 +50,8 @@ function fungetticker()
 		vlast1 = data.result.Last;
 		vbid = Number(vbid1);
 		vlast = Number(vlast1);
-		vaskant2 = vaskant;
-		vaskant = vask;
+		vbidant2 = vbidant;
+		vbidant = vbid;
 		vask = Number(vask1);
 		vbidtxt = funponerCerosDer(vbid.toString(), 10);
 		vasktxt = funponerCerosDer(vask.toString(), 10);
@@ -68,18 +68,18 @@ function funoperacion()
 {
 	console.log('\n');
 	//console.log('------ INICIO -----');
-	console.log('\033[47m','\033[30m','Iteracion: ' + i,'\033[0m');
+	console.log('\033[47m\033[30mIteracion: ' + i,'\033[0m');
 	console.log('vestado_op:         ' + vestado_op);
-	console.log('vbid:               ' + vbid);
 	console.log('vask:               ' + vask);
-	console.log('vaskant:            ' + vaskant);
-	console.log('vaskant2:           ' + vaskant2);
-	console.log('vask > vaskant:     ' + (vask > vaskant));
-	console.log('vaskant < vaskant2: ' + (vaskant < vaskant2));
-	if (vask > vaskant) {
+	console.log('vbid:               ' + vbid);
+	console.log('vbidant:            ' + vbidant);
+	console.log('vbidant2:           ' + vbidant2);
+	console.log('vask > vbidant:     ' + (vbid > vbidant));
+	console.log('vbidant < vbidant2: ' + (vbidant < vbidant2));
+	if (vbid > vbidant) {
 		console.log('\033[32m','Sube','\033[0m');
 		contsb = (contsb + 1);
-	}	else if (vask < vaskant) {
+	}	else if (vbidant < vbidant2) {
 			console.log('\033[31m','Baja','\033[0m');
 			contsb = (contsb - 1);
 		}	else {
@@ -88,7 +88,7 @@ function funoperacion()
 	
 	if (i > 2){
 		if (vestado_op == 0){ // si no hay operacion abierta
-			if ((vask > vaskant) && (vaskant < vaskant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
+			if ((vask > vbidant) && (vbidant < vbidant2)) { // si baja el precio y luego sube, y no hay operación abierta, hay que comprar 
 				vestado_op = 1;
 				//console.log('Acción: Comprar');
 				console.log('\033[33m','Acción: Comprar','\033[0m');
@@ -150,7 +150,7 @@ function funventa()
 	vid_op = vid_op + 1;
 	vacumcompra = 0;
 	vuniacumcompra = vunicompraini;
-	vprofoper = 1;
+	vprofoper = 0;
 	i = 0;
 	ibuytosell = 1;
 	contsb = 0;
