@@ -161,7 +161,6 @@ function funescribirarchivo()
 {
 	var itxt = i.toString();
 	var vhora = funobtenerhora();
-, , 
 	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + vbidant + ',' + vbidant2 + ',' + vbid>vbidant + ',' + vbidant<vbidant2 + ',' + vprofoper + ',' + contsb + ',' + vaskcompra + ',' + vdiferenciavc + ',' + vporcactual + ',' + vporcesperado + ',' + vvalorcompra + ',' + vuniacumcompra);
 	console.log( vlinetxt );
 	wstream.write( vlinetxt );
