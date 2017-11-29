@@ -160,8 +160,21 @@ function funventa()
 function funescribirarchivo()
 {
 	var itxt = i.toString();
+	
 	var vhora = funobtenerhora();
-	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + vbidant + ',' + vbidant2 + ',' + vbid>vbidant + ',' + vbidant<vbidant2 + ',' + vprofoper + ',' + contsb + ',' + vaskcompra + ',' + vdiferenciavc + ',' + vporcactual + ',' + vporcesperado + ',' + vvalorcompra + ',' + vuniacumcompra);
+	if (vbid>vbidant) {
+		var vcambio1 = 'true';
+	}else {
+		var vcambio1 = 'false'
+	}
+
+	if (vbidant<vbidant2) {
+		var vcambio2 = 'true';
+	}else {
+		var vcambio2 = 'false'
+	}
+
+	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + vbidant.toString() + ',' + vbidant2.toString() + ',' + vcambio1 + ',' + vcambio2 + ',' + vprofoper.toString() + ',' + contsb.toString() + ',' + vaskcompra.toString() + ',' + vdiferenciavc.toString() + ',' + vporcactual.toString() + ',' + vporcesperado.toString() + ',' + vvalorcompra.toString() + ',' + vuniacumcompra.toString());
 	console.log( vlinetxt );
 	wstream.write( vlinetxt );
 	wstream.write('\n');
