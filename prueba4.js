@@ -20,8 +20,11 @@ var vprofoper = 0;
 var vaccion = '';
 var vestado_op = 0;
 var vcliente = 'Jose Mejia';
-var vspread, vid_op, vid_opant, vmercado = 'BTC-NEO', vtipo_op, vvalorcompra, vacumcompra;
+var vspread, vid_op, vid_opant, vmercado = 'BTC-NEO', vtipo_op, vvalorultcompra, vacumcompra;
 var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, vvalorventa, vdiferenciavc;
+var	vacumcompra = 0;
+var	vvalorultcompra = 0;
+var	vid_op = 0;
 
 {
 
@@ -30,11 +33,8 @@ var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, 
 	  'apisecret' : '8af924252c8a4947b520a01607c5daea',
 	});
 
-	wstream.write( 'Numero, Hora, Bid, Ask, Last, vbidant, vbidant2, vbid>vbidant, vbidant<vbidant2, vprofoper, contsb, vaskcompra, vdiferenciavc, vporcactual, vporcesperado, vvalorcompra, vuniacumcompra' );
+	wstream.write( 'Numero, Hora, Bid, Ask, Last, vbidant, vbidant2, vbid>vbidant, vbidant<vbidant2, vprofoper, contsb, vaskcompra, vdiferenciavc, vporcactual, vporcesperado, vvalorultcompra, vuniacumcompra' );
 	wstream.write('\n');
-	vacumcompra = 0;
-	vvalorcompra = 0;
-	vid_op = 0;
 	//funtraerdatosbd();
 	setInterval(fungetticker, 15000);
 }
@@ -99,7 +99,7 @@ function funoperacion()
 		} else {
 
 			vdiferenciavc = (vbid - vaskcompra) * vuniacumcompra;
-			vporcactual = (vdiferenciavc / vvalorcompra);
+			vporcactual = (vdiferenciavc / vvalorultcompra);
 
 			console.log('vprofoper:          ' + vprofoper);
 			console.log('contsb:             ' + contsb);
@@ -109,8 +109,9 @@ function funoperacion()
 			console.log('vdiferenciavc:      ' + vdiferenciavc);
 			console.log('vporcactual:        ' + vporcactual);
 			console.log('vporcesperado:      ' + vporcesperado);
-			console.log('vvalorcompra:       ' + vvalorcompra);
 			console.log('vuniacumcompra:     ' + vuniacumcompra);
+			console.log('vvalorultcompra:       ' + vvalorultcompra);
+			console.log('vacumcompra:        ' + vacumcompra);
 			if (vporcactual < -vporcesperado) {
 				funcompra();
 				console.log('\033[31mAcción: Recomprar','\033[0m');
@@ -127,16 +128,16 @@ function funoperacion()
 function funcompra()
 {
 	vaskcompra = vask;
-	vvalorcompra = vuniacumcompra * vask;
-	vacumcompra = vacumcompra + vvalorcompra;
+	vvalorultcompra = vuniacumcompra * vask;
+	vacumcompra = vacumcompra + vvalorultcompra;
 	vprofoper = vprofoper + 1;
-	// llamar aqui la funcion de compra: parametros : vuniacumcompra, vvalorcompra.
+	// llamar aqui la funcion de compra: parametros : vuniacumcompra, vvalorultcompra.
 	// llamado funcion
 	if (vprofoper > 1) {
 		vuniacumcompra = vuniacumcompra + vuniacumcompra;
 	}
-	vvaloravender = vvalorcompra * (vporcesperado + 1);
-	vvalorarecomprar = vvalorcompra - (vvalorcompra * vporcesperado);
+	vvaloravender = vvalorultcompra * (vporcesperado + 1);
+	vvalorarecomprar = vvalorultcompra - (vvalorultcompra * vporcesperado);
 	vuniarecomprar = vuniacumcompra;
 	ibuytosell = 1;
 	contsb = 0;
@@ -182,9 +183,9 @@ function funescribirarchivo()
 	var vdiferenciavctxt = String(vdiferenciavc);
 	var vporcactualtxt = String(vporcactual);
 	var vporcesperadotxt = String(vporcesperado);
-	var vvalorcompratxt = String(vvalorcompra);
+	var vvalorultcompratxt = String(vvalorultcompra);
 	var vuniacumcompratxt = String(vuniacumcompra);
-	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + String(vbidant) + ',' + String(vbidant2) + ',' + vcambio1 + ',' + vcambio2 + ',' + vprofopertxt + ',' + vcontsbtxt + ',' + vaskcompratxt + ',' + vdiferenciavctxt + ',' + vporcactualtxt + ',' + vporcesperadotxt + ',' + vvalorcompratxt + ',' + vuniacumcompratxt);
+	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + String(vbidant) + ',' + String(vbidant2) + ',' + vcambio1 + ',' + vcambio2 + ',' + vprofopertxt + ',' + vcontsbtxt + ',' + vaskcompratxt + ',' + vdiferenciavctxt + ',' + vporcactualtxt + ',' + vporcesperadotxt + ',' + vvalorultcompratxt + ',' + vuniacumcompratxt);
 	//console.log( vlinetxt );
 	wstream.write( vlinetxt );
 	wstream.write('\n');
