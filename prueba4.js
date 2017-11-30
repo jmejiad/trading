@@ -2,7 +2,7 @@
 var bittrex = require('node-bittrex-api');
 var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
-var id_op = 1;
+var vid_op = 0;
 var i = 1;
 var contsb = 0;
 var ibuytosell = 0; 
@@ -20,11 +20,10 @@ var vprofoper = 0;
 var vaccion = '';
 var vestado_op = 0;
 var vcliente = 'Jose Mejia';
-var vspread, vid_op, vid_opant, vmercado = 'BTC-NEO', vtipo_op, vvalorultcompra, vacumcompra;
+var vspread, vid_opant, vmercado = 'BTC-NEO', vtipo_op, vvalorultcompra, vacumcompra;
 var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, vvalorventa, vdiferenciavc;
 var	vacumcompra = 0;
 var	vvalorultcompra = 0;
-var	vid_op = 0;
 
 {
 
@@ -70,7 +69,7 @@ function funoperacion()
 {
 	console.log('\n');
 	//console.log('------ INICIO -----');
-	console.log('\033[47m\033[30mIteracion:' + id_op + '.' + i, '\033[0m');
+	console.log('\033[47m\033[30mIteracion:' + vid_op + '.' + i, '\033[0m');
 	console.log('vestado_op:         ' + vestado_op);
 	console.log('vask:               ' + vask);
 	console.log('vbid:               ' + vbid);
@@ -155,6 +154,7 @@ function funventa()
 	vuniacumcompra = vunicompraini;
 	vprofoper = 0;
 	i = 0;
+	vid_op = vid_op + 1;
 	ibuytosell = 1;
 	contsb = 0;
 
