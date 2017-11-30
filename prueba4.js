@@ -2,7 +2,7 @@
 var bittrex = require('node-bittrex-api');
 var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
-var vid_op = 0;
+var vid_op = 1;
 var i = 1;
 var contsb = 0;
 var ibuytosell = 0; 
@@ -109,7 +109,7 @@ function funoperacion()
 			console.log('vporcactual:        ' + vporcactual);
 			console.log('vporcesperado:      ' + vporcesperado);
 			console.log('vuniacumcompra:     ' + vuniacumcompra);
-			console.log('vvalorultcompra:       ' + vvalorultcompra);
+			console.log('vvalorultcompra:    ' + vvalorultcompra);
 			console.log('vacumcompra:        ' + vacumcompra);
 			if (vporcactual < -vporcesperado) {
 				funcompra();
