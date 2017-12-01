@@ -20,7 +20,7 @@ var vprofoper = 0;
 var vaccion = '';
 var vestado_op = 0;
 var vcliente = 'Jose Mejia';
-var vspread, vid_opant, vmercado = 'BTC-NEO', vtipo_op, vvalorultcompra, vacumcompra;
+var vspread, vid_opant, vmercado = 'BTC-GBG', vtipo_op, vvalorultcompra, vacumcompra;
 var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, vvalorventa, vdiferenciavc;
 var	vacumcompra = 0;
 var	vvalorultcompra = 0;
