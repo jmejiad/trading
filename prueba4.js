@@ -12,7 +12,8 @@ var vbidant = 0, vbidant2 = 0;
 var vlast, vlast1, vlasttxt;
 var vaskultcompra = 0.00000000; // valor de ultima compra o recompra
 var vaskcompraini = 0.00000000; // valor de primera compra
-var vporcesperado = 0.1;
+var vporcesperadorecompra = 0.1;
+var vporcesperadoventa = 0.01;
 var vporcactual = 0;
 var vunicompraini = 100;
 var vdiferenciavcacum = 0;
@@ -33,7 +34,7 @@ var	vvalorultcompra = 0;
 	  'apisecret' : '8af924252c8a4947b520a01607c5daea',
 	});
 
-	wstream.write( 'Numero, Hora, Bid, Ask, Last, vbidant, vbidant2, vbid>vbidant, vbidant<vbidant2, vprofoper, contsb, vaskultcompra, vdiferenciavc, vporcactual, vporcesperado, vvalorultcompra, vuniacumcompra, vacumcompra, vvalorventa' );
+	wstream.write( 'Numero, Hora, Bid, Ask, Last, vbidant, vbidant2, vbid>vbidant, vbidant<vbidant2, vprofoper, contsb, vaskultcompra, vdiferenciavc, vporcactual, vporcesperadorecompra, vporcesperadoventa, vvalorultcompra, vuniacumcompra, vacumcompra, vvalorventa' );
 	wstream.write('\n');
 	//funtraerdatosbd();
 	setInterval(fungetticker, 15000);
@@ -71,13 +72,13 @@ function funoperacion()
 	console.log('\n');
 	//console.log('------ INICIO -----');
 	console.log('\033[47m\033[30mIteracion:' + vid_op + '.' + i, '\033[0m');
-	console.log('vestado_op:         ' + vestado_op);
-	console.log('vask:               ' + vask);
-	console.log('vbid:               ' + vbid);
-	console.log('vbidant:            ' + vbidant);
-	console.log('vbidant2:           ' + vbidant2);
-	console.log('vbid > vbidant:     ' + (vbid > vbidant));
-	console.log('vbidant < vbidant2: ' + (vbidant < vbidant2));
+	console.log('vestado_op:           ' + vestado_op);
+	console.log('vask:                 ' + vask);
+	console.log('vbid:                 ' + vbid);
+	console.log('vbidant:              ' + vbidant);
+	console.log('vbidant2:             ' + vbidant2);
+	console.log('vbid > vbidant:       ' + (vbid > vbidant));
+	console.log('vbidant < vbidant2:   ' + (vbidant < vbidant2));
 	if (vbid > vbidant) {
 		console.log('\033[32mSube','\033[0m');
 		contsb = (contsb + 1);
@@ -101,23 +102,24 @@ function funoperacion()
 			vdiferenciavc = (vbid - vaskultcompra) * vuniacumcompra;
 			vporcactual = (vdiferenciavc / vvalorultcompra);
 
-			console.log('vprofoper:          ' + vprofoper);
-			console.log('contsb:             ' + contsb);
-			console.log('vbid:               ' + vbid);
-			console.log('vask:               ' + vask);
-			console.log('vaskcompraini:      ' + vaskcompraini);
-			console.log('vaskultcompra:      ' + vaskultcompra);
-			console.log('vdiferenciavc:      ' + vdiferenciavc);
-			console.log('vporcactual:        ' + vporcactual);
-			console.log('vporcesperado:      ' + vporcesperado);
-			console.log('vuniacumcompra:     ' + vuniacumcompra);
-			console.log('vvalorultcompra:    ' + vvalorultcompra);
-			console.log('vacumcompra:        ' + vacumcompra);
-			if (vporcactual < -vporcesperado) {
+			console.log('vprofoper:            ' + vprofoper);
+			console.log('contsb:               ' + contsb);
+			console.log('vbid:                 ' + vbid);
+			console.log('vask:                 ' + vask);
+			console.log('vaskcompraini:        ' + vaskcompraini);
+			console.log('vaskultcompra:        ' + vaskultcompra);
+			console.log('vdiferenciavc:        ' + vdiferenciavc);
+			console.log('vporcactual:          ' + vporcactual);
+			console.log('vporcesperadorecompra:' + vporcesperadorecompra);
+			console.log('vporcesperadoventa:   ' + vporcesperadoventa);
+			console.log('vuniacumcompra:       ' + vuniacumcompra);
+			console.log('vvalorultcompra:      ' + vvalorultcompra);
+			console.log('vacumcompra:          ' + vacumcompra);
+			if (vporcactual < -vporcesperadorecompra) {
 				funcompra();
 				console.log('\033[31mAcción: Recomprar','\033[0m');
 				//console.log('Acción: Recomprar');
-			} else if (vporcactual >= vporcesperado/10) {
+			} else if (vporcactual >= vporcesperadoventa) {
 				funventa();
 				console.log('\033[32mAcción: Vender','\033[0m');
 				//console.log('Acción: Vender');
@@ -139,8 +141,8 @@ function funcompra()
 	}else if (vprofoper <= 1) {
 		vaskcompraini = vask;
 	}
-	vvaloravender = vvalorultcompra * (vporcesperado + 1);
-	vvalorarecomprar = vvalorultcompra - (vvalorultcompra * vporcesperado);
+	vvaloravender = vvalorultcompra * (vporcesperadoventa + 1);
+	vvalorarecomprar = vvalorultcompra - (vvalorultcompra * vporcesperadorecompra);
 	vuniarecomprar = vuniacumcompra;
 	ibuytosell = 1;
 	contsb = 0;
@@ -187,10 +189,11 @@ function funescribirarchivo()
 	var vaskultcompratxt = String(vaskultcompra);
 	var vdiferenciavctxt = String(vdiferenciavc);
 	var vporcactualtxt = String(vporcactual);
-	var vporcesperadotxt = String(vporcesperado);
+	var vporcesperadorecompratxt = String(vporcesperadorecompra);
+	var vporcesperadoventatxt = String(vporcesperadoventa);
 	var vvalorultcompratxt = String(vvalorultcompra);
 	var vuniacumcompratxt = String(vuniacumcompra);
-	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + String(vbidant) + ',' + String(vbidant2) + ',' + vcambio1 + ',' + vcambio2 + ',' + vprofopertxt + ',' + vcontsbtxt + ',' + vaskultcompratxt + ',' + vdiferenciavctxt + ',' + vporcactualtxt + ',' + vporcesperadotxt + ',' + vvalorultcompratxt + ',' + vuniacumcompratxt + ',' + vacumcompra + ',' + vvalorventa);
+	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + String(vbidant) + ',' + String(vbidant2) + ',' + vcambio1 + ',' + vcambio2 + ',' + vprofopertxt + ',' + vcontsbtxt + ',' + vaskultcompratxt + ',' + vdiferenciavctxt + ',' + vporcactualtxt + ',' + vporcesperadorecompratxt + ',' + vporcesperadoventatxt + ',' + vvalorultcompratxt + ',' + vuniacumcompratxt + ',' + vacumcompra + ',' + vvalorventa);
 	//console.log( vlinetxt );
 	wstream.write( vlinetxt );
 	wstream.write('\n');
