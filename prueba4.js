@@ -6,13 +6,13 @@ var vid_op = 1;
 var i = 1;
 var contsb = 0;
 var ibuytosell = 0; 
-var vbid, vvid1, vdidtxt;
+var vbid = 0, vvid1, vdidtxt;
 var vask = 0, vask1, vasktxt;
 var vbidant = 0, vbidant2 = 0;
 var vlast, vlast1, vlasttxt;
 var vaskultcompra = 0.00000000; // valor de ultima compra o recompra
 var vaskcompraini = 0.00000000; // valor de primera compra
-var vporcesperado = 0.01;
+var vporcesperado = 0.1;
 var vporcactual = 0;
 var vunicompraini = 100;
 var vdiferenciavcacum = 0;
@@ -117,7 +117,7 @@ function funoperacion()
 				funcompra();
 				console.log('\033[31mAcción: Recomprar','\033[0m');
 				//console.log('Acción: Recomprar');
-			} else if (vporcactual > vporcesperado) {
+			} else if (vporcactual >= vporcesperado) {
 				funventa();
 				console.log('\033[32mAcción: Vender','\033[0m');
 				//console.log('Acción: Vender');
