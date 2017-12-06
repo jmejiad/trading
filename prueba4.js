@@ -117,7 +117,7 @@ function funoperacion()
 				funcompra();
 				console.log('\033[31mAcción: Recomprar','\033[0m');
 				//console.log('Acción: Recomprar');
-			} else if (vporcactual >= vporcesperado) {
+			} else if (vporcactual >= vporcesperado/10) {
 				funventa();
 				console.log('\033[32mAcción: Vender','\033[0m');
 				//console.log('Acción: Vender');
