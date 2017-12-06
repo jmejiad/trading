@@ -33,7 +33,7 @@ var	vvalorultcompra = 0;
 	  'apisecret' : '8af924252c8a4947b520a01607c5daea',
 	});
 
-	wstream.write( 'Numero, Hora, Bid, Ask, Last, vbidant, vbidant2, vbid>vbidant, vbidant<vbidant2, vprofoper, contsb, vaskultcompra, vdiferenciavc, vporcactual, vporcesperado, vvalorultcompra, vuniacumcompra' );
+	wstream.write( 'Numero, Hora, Bid, Ask, Last, vbidant, vbidant2, vbid>vbidant, vbidant<vbidant2, vprofoper, contsb, vaskultcompra, vdiferenciavc, vporcactual, vporcesperado, vvalorultcompra, vuniacumcompra, vacumcompra, vvalorventa' );
 	wstream.write('\n');
 	//funtraerdatosbd();
 	setInterval(fungetticker, 15000);
@@ -190,7 +190,7 @@ function funescribirarchivo()
 	var vporcesperadotxt = String(vporcesperado);
 	var vvalorultcompratxt = String(vvalorultcompra);
 	var vuniacumcompratxt = String(vuniacumcompra);
-	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + String(vbidant) + ',' + String(vbidant2) + ',' + vcambio1 + ',' + vcambio2 + ',' + vprofopertxt + ',' + vcontsbtxt + ',' + vaskultcompratxt + ',' + vdiferenciavctxt + ',' + vporcactualtxt + ',' + vporcesperadotxt + ',' + vvalorultcompratxt + ',' + vuniacumcompratxt);
+	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + String(vbidant) + ',' + String(vbidant2) + ',' + vcambio1 + ',' + vcambio2 + ',' + vprofopertxt + ',' + vcontsbtxt + ',' + vaskultcompratxt + ',' + vdiferenciavctxt + ',' + vporcactualtxt + ',' + vporcesperadotxt + ',' + vvalorultcompratxt + ',' + vuniacumcompratxt + ',' + vacumcompra + ',' + vvalorventa);
 	//console.log( vlinetxt );
 	wstream.write( vlinetxt );
 	wstream.write('\n');
