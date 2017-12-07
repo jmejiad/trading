@@ -79,13 +79,13 @@ function funoperacion()
 	console.log('vbidant:               ' + vbidant);
 	console.log('vbidant2:              ' + vbidant2);
 	if (vbid > vbidant) {
-		console.log('\033[32mSube','\033[0m');
+		console.log('\033[32mvbid Sube','\033[0m');
 		contsb = (contsb + 1);
 	}	else if (vbid < vbidant) {
-			console.log('\033[31mBaja','\033[0m');
+			console.log('\033[31mvbid Baja','\033[0m');
 			contsb = (contsb - 1);
 		}	else {
-				console.log('Igual');
+				console.log('vbid Igual');
 			}
 	
 	if (i > 2){
@@ -109,11 +109,16 @@ function funoperacion()
 			console.log('vaskultcompra:         ' + vaskultcompra);
 			console.log('vdiferenciavc:         ' + vdiferenciavc);
 			console.log('vporcactual:           ' + vporcactual);
-			console.log('vporcesperadorecompra:' + vporcesperadorecompra);
+			console.log('vporcesperadorecompra: ' + vporcesperadorecompra);
 			console.log('vporcesperadoventa:    ' + vporcesperadoventa);
 			console.log('vuniacumcompra:        ' + vuniacumcompra);
 			console.log('vvalorultcompra:       ' + vvalorultcompra);
 			console.log('vacumcompra:           ' + vacumcompra);
+			if (vdiferenciatotalopacum < 0){
+				console.log('\033[31mvdiferenciatotalopacum:' + vdiferenciatotalopacum, '\033[0m');
+			} else {
+				console.log('\033[32mvdiferenciatotalopacum:' + vdiferenciatotalopacum, '\033[0m');
+			}
 			if (vporcactual < vporcesperadorecompra) {
 				funcompra();
 				console.log('\033[31mAcción: Recomprar','\033[0m');
@@ -156,9 +161,19 @@ function funventa()
 	vdiferenciatotalop = vvalorventa - vacumcompra;
 	vdiferenciatotalopacum = vdiferenciatotalopacum + vdiferenciatotalop;
 	vacumcompra = 0;
-	console.log('\033[32mvvalorventa:           ' + vvalorventa, '\033[0m');
-	console.log('\033[32mvdiferenciatotalop:    ' + vdiferenciatotalop, '\033[0m');
-	console.log('\033[32mvdiferenciatotalopacum:' + vdiferenciatotalopacum, '\033[0m');
+	console.log('vvalorventa:           ' + vvalorventa);
+	
+	if (vdiferenciatotalop < 0){
+		console.log('\033[31mvdiferenciatotalop:    ' + vdiferenciatotalop, '\033[0m');
+	} else {
+		console.log('\033[32mvdiferenciatotalop:    ' + vdiferenciatotalop, '\033[0m');
+	}
+	
+	if (vdiferenciatotalopacum < 0){
+		console.log('\033[31mvdiferenciatotalopacum:' + vdiferenciatotalopacum, '\033[0m');
+	} else {
+		console.log('\033[32mvdiferenciatotalopacum:' + vdiferenciatotalopacum, '\033[0m');
+	}
 	vuniacumcompra = vunicompraini;
 	vprofoper = 0;
 	i = 0;
