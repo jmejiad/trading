@@ -150,10 +150,10 @@ function funcompra()
 function funventa()
 {
 	vestado_op = 0;
-	vacumcompra = 0;
 	vaskcompraini = 0;
 	vvalorventa = vuniacumcompra * vbid;
 	vdiferenciatotalop = vvalorventa - vacumcompra;
+	vacumcompra = 0;
 	console.log('\033[32mvvalorventa:           ' + vvalorventa, '\033[0m');
 	console.log('\033[32mvdiferenciatotalop:    ' + vdiferenciatotalop, '\033[0m');
 	vuniacumcompra = vunicompraini;
