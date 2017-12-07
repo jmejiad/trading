@@ -138,7 +138,6 @@ function funoperacion()
 				else{
 					console.log('vdiferenciatotalopacum:' + vdiferenciatotalopacum);
 				}
-			}
 
 			if (vporcactual < vporcesperadorecompra) {
 				funcompra();
@@ -173,8 +172,8 @@ function funcompra()
 	contbid_sb = 0;
 	contask_sb = 0;
 
-
 }
+
 function funventa()
 {
 	vestado_op = 0;
