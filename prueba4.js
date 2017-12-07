@@ -17,6 +17,7 @@ var vporcesperadoventa = 0.01;
 var vporcactual = 0;
 var vunicompraini = 100;
 var vdiferenciatotalop = 0;
+var vdiferenciatotalopacum = 0;
 var vuniacumcompra = vunicompraini;
 var vprofoper = 0;
 var vaccion = '';
@@ -34,7 +35,7 @@ var	vvalorultcompra = 0;
 	  'apisecret' : '8af924252c8a4947b520a01607c5daea',
 	});
 
-	wstream.write( 'Numero, Hora, Bid, Ask, Last, vbidant, vbidant2, vbid>vbidant, vbidant<vbidant2, vprofoper, contsb, vaskultcompra, vdiferenciavc, vporcactual, vporcesperadorecompra, vporcesperadoventa, vvalorultcompra, vuniacumcompra, vacumcompra, vvalorventa, vdiferenciatotalop' );
+	wstream.write( 'Numero, Hora, Bid, Ask, Last, vbidant, vbidant2, vbid>vbidant, vbidant<vbidant2, vprofoper, contsb, vaskultcompra, vdiferenciavc, vporcactual, vporcesperadorecompra, vporcesperadoventa, vvalorultcompra, vuniacumcompra, vacumcompra, vvalorventa, vdiferenciatotalop, vdiferenciatotalopacum' );
 	wstream.write('\n');
 	//funtraerdatosbd();
 	setInterval(fungetticker, 15000);
@@ -153,9 +154,11 @@ function funventa()
 	vaskcompraini = 0;
 	vvalorventa = vuniacumcompra * vbid;
 	vdiferenciatotalop = vvalorventa - vacumcompra;
+	vdiferenciatotalopacum = vdiferenciatotalopacum + vdiferenciatotalop;
 	vacumcompra = 0;
 	console.log('\033[32mvvalorventa:           ' + vvalorventa, '\033[0m');
 	console.log('\033[32mvdiferenciatotalop:    ' + vdiferenciatotalop, '\033[0m');
+	console.log('\033[32mvdiferenciatotalopacum:' + vdiferenciatotalopacum, '\033[0m');
 	vuniacumcompra = vunicompraini;
 	vprofoper = 0;
 	i = 0;
@@ -187,12 +190,13 @@ function funescribirarchivo()
 	var vaskultcompratxt = String(vaskultcompra);
 	var vdiferenciavctxt = String(vdiferenciavc);
 	var vdiferenciatotaloptxt = String(vdiferenciatotalop);
+	var vdiferenciatotalopacumtxt = String(vdiferenciatotalopacum);
 	var vporcactualtxt = String(vporcactual);
 	var vporcesperadorecompratxt = String(vporcesperadorecompra);
 	var vporcesperadoventatxt = String(vporcesperadoventa);
 	var vvalorultcompratxt = String(vvalorultcompra);
 	var vuniacumcompratxt = String(vuniacumcompra);
-	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + String(vbidant) + ',' + String(vbidant2) + ',' + vcambio1 + ',' + vcambio2 + ',' + vprofopertxt + ',' + vcontsbtxt + ',' + vaskultcompratxt + ',' + vdiferenciavctxt + ',' + vporcactualtxt + ',' + vporcesperadorecompratxt + ',' + vporcesperadoventatxt + ',' + vvalorultcompratxt + ',' + vuniacumcompratxt + ',' + vacumcompra + ',' + vvalorventa + ',' + vdiferenciatotaloptxt);
+	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + String(vbidant) + ',' + String(vbidant2) + ',' + vcambio1 + ',' + vcambio2 + ',' + vprofopertxt + ',' + vcontsbtxt + ',' + vaskultcompratxt + ',' + vdiferenciavctxt + ',' + vporcactualtxt + ',' + vporcesperadorecompratxt + ',' + vporcesperadoventatxt + ',' + vvalorultcompratxt + ',' + vuniacumcompratxt + ',' + vacumcompra + ',' + vvalorventa + ',' + vdiferenciatotaloptxt + ',' + vdiferenciatotalopacumtxt);
 	//console.log( vlinetxt );
 	wstream.write( vlinetxt );
 	wstream.write('\n');
