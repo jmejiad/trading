@@ -4,16 +4,18 @@ var fs = require('fs');
 var wstream = fs.createWriteStream('Ticker_Log.csv');
 var vid_op = 1;
 var i = 1;
-var contsb = 0;
+var contbid_sb = 0;
+var contask_sb = 0;
 var ibuytosell = 0; 
 var vbid = 0, vvid1, vdidtxt;
 var vask = 0, vask1, vasktxt;
+var vaskant = 0;
 var vbidant = 0, vbidant2 = 0;
 var vlast, vlast1, vlasttxt;
 var vaskultcompra = 0.00000000; // valor de ultima compra o recompra
 var vaskcompraini = 0.00000000; // valor de primera compra
-var vporcesperadorecompra = -0.07;
-var vporcesperadoventa = 0.01;
+var vporcesperadorecompra = -0.05;
+var vporcesperadoventa = 0.02;
 var vporcactual = 0;
 var vunicompraini = 100;
 var vdiferenciatotalop = 0;
@@ -35,7 +37,7 @@ var	vvalorultcompra = 0;
 	  'apisecret' : '8af924252c8a4947b520a01607c5daea',
 	});
 
-	wstream.write( 'Numero, Hora, Bid, Ask, Last, vbidant, vbidant2, vbid>vbidant, vbidant<vbidant2, vprofoper, contsb, vaskultcompra, vdiferenciavc, vporcactual, vporcesperadorecompra, vporcesperadoventa, vvalorultcompra, vuniacumcompra, vacumcompra, vvalorventa, vdiferenciatotalop, vdiferenciatotalopacum' );
+	wstream.write( 'Numero, Hora, Bid, Ask, Last, vbidant, vbidant2, vbid>vbidant, vbidant<vbidant2, vprofoper, contbid_sb, contask_sb, vaskultcompra, vdiferenciavc, vporcactual, vporcesperadorecompra, vporcesperadoventa, vvalorultcompra, vuniacumcompra, vacumcompra, vvalorventa, vdiferenciatotalop, vdiferenciatotalopacum' );
 	wstream.write('\n');
 	//funtraerdatosbd();
 	setInterval(fungetticker, 15000);
@@ -57,6 +59,7 @@ function fungetticker()
 		vask = Number(vask1);
 		vbid = Number(vbid1);
 		vlast = Number(vlast1);
+		vaskant = vask;
 		vbidtxt = funponerCerosDer(vbid.toString(), 10);
 		vasktxt = funponerCerosDer(vask.toString(), 10);
 		vlasttxt = funponerCerosDer(vlast.toString(), 10);
@@ -75,15 +78,27 @@ function funoperacion()
 	console.log('\033[47m\033[30mIteracion:' + vid_op + '.' + i, '\033[0m');
 	console.log('vestado_op:            ' + vestado_op);
 	console.log('vask:                  ' + vask);
+	console.log('vaskant:               ' + vaskant);
 	console.log('vbid:                  ' + vbid);
 	console.log('vbidant:               ' + vbidant);
 	console.log('vbidant2:              ' + vbidant2);
+
+	if (vask > vaskant) {
+		console.log('\033[32mvask Sube','\033[0m');
+		contask_sb = (contask_sb + 1);
+	}	else if (vask < vaskant) {
+			console.log('\033[31mvask Baja','\033[0m');
+			contask_sb = (contask_sb - 1);
+		}	else {
+				console.log('vask Igual');
+			}
+
 	if (vbid > vbidant) {
 		console.log('\033[32mvbid Sube','\033[0m');
-		contsb = (contsb + 1);
+		contbid_sb = (contbid_sb + 1);
 	}	else if (vbid < vbidant) {
 			console.log('\033[31mvbid Baja','\033[0m');
-			contsb = (contsb - 1);
+			contbid_sb = (contbid_sb - 1);
 		}	else {
 				console.log('vbid Igual');
 			}
@@ -102,7 +117,8 @@ function funoperacion()
 			vporcactual = (vdiferenciavc / vvalorultcompra);
 
 			console.log('vprofoper:             ' + vprofoper);
-			console.log('contsb:                ' + contsb);
+			console.log('contbid_sb:            ' + contbid_sb);
+			console.log('contask_sb:            ' + contask_sb);
 			console.log('vbid:                  ' + vbid);
 			console.log('vask:                  ' + vask);
 			console.log('vaskcompraini:         ' + vaskcompraini);
@@ -116,9 +132,13 @@ function funoperacion()
 			console.log('vacumcompra:           ' + vacumcompra);
 			if (vdiferenciatotalopacum < 0){
 				console.log('\033[31mvdiferenciatotalopacum:' + vdiferenciatotalopacum, '\033[0m');
-			} else {
+			} else if (vdiferenciatotalopacum > 0){
 				console.log('\033[32mvdiferenciatotalopacum:' + vdiferenciatotalopacum, '\033[0m');
+				else{
+					console.log('vdiferenciatotalopacum:' + vdiferenciatotalopacum);
+				}
 			}
+
 			if (vporcactual < vporcesperadorecompra) {
 				funcompra();
 				console.log('\033[31mAcción: Recomprar','\033[0m');
@@ -149,7 +169,8 @@ function funcompra()
 	vvalorarecomprar = vvalorultcompra - (vvalorultcompra * vporcesperadorecompra);
 	vuniarecomprar = vuniacumcompra;
 	ibuytosell = 1;
-	contsb = 0;
+	contbid_sb = 0;
+	contask_sb = 0;
 
 
 }
@@ -179,7 +200,8 @@ function funventa()
 	i = 0;
 	vid_op = vid_op + 1;
 	ibuytosell = 1;
-	contsb = 0;
+	contbid_sb = 0;
+	contask_sb = 0;
 
 }
 
@@ -201,7 +223,8 @@ function funescribirarchivo()
 	}
 
 	var vprofopertxt = String(vprofoper); 
-	var vcontsbtxt = String(contsb);
+	var vcontbid_sbtxt = String(contbid_sb);
+	var vcontask_sbtxt = String(contask_sb);
 	var vaskultcompratxt = String(vaskultcompra);
 	var vdiferenciavctxt = String(vdiferenciavc);
 	var vdiferenciatotaloptxt = String(vdiferenciatotalop);
@@ -211,7 +234,7 @@ function funescribirarchivo()
 	var vporcesperadoventatxt = String(vporcesperadoventa);
 	var vvalorultcompratxt = String(vvalorultcompra);
 	var vuniacumcompratxt = String(vuniacumcompra);
-	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + String(vbidant) + ',' + String(vbidant2) + ',' + vcambio1 + ',' + vcambio2 + ',' + vprofopertxt + ',' + vcontsbtxt + ',' + vaskultcompratxt + ',' + vdiferenciavctxt + ',' + vporcactualtxt + ',' + vporcesperadorecompratxt + ',' + vporcesperadoventatxt + ',' + vvalorultcompratxt + ',' + vuniacumcompratxt + ',' + vacumcompra + ',' + vvalorventa + ',' + vdiferenciatotaloptxt + ',' + vdiferenciatotalopacumtxt);
+	var vlinetxt = (itxt + ',' + vhora + ',' + vbidtxt + ',' + vasktxt + ',' + vlasttxt + ',' + String(vbidant) + ',' + String(vbidant2) + ',' + vcambio1 + ',' + vcambio2 + ',' + vprofopertxt + ',' + vcontbid_sbtxt + ',' + vcontask_sbtxt + ',' + vaskultcompratxt + ',' + vdiferenciavctxt + ',' + vporcactualtxt + ',' + vporcesperadorecompratxt + ',' + vporcesperadoventatxt + ',' + vvalorultcompratxt + ',' + vuniacumcompratxt + ',' + vacumcompra + ',' + vvalorventa + ',' + vdiferenciatotaloptxt + ',' + vdiferenciatotalopacumtxt);
 	//console.log( vlinetxt );
 	wstream.write( vlinetxt );
 	wstream.write('\n');
