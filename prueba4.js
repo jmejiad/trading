@@ -22,7 +22,7 @@ var vprofoper = 0;
 var vaccion = '';
 var vestado_op = 0;
 var vcliente = 'Jose Mejia';
-var vspread, vid_opant, vmercado = 'BTC-GBG', vtipo_op, vvalorultcompra, vacumcompra;
+var vspread, vid_opant, vmercado = 'BTC-MANA', vtipo_op, vvalorultcompra, vacumcompra;
 var vuniavender, vvaloravender, vvalorarecomprar, vuniarecomprar, vunivendidas, vvalorventa, vdiferenciavc;
 var	vacumcompra = 0;
 var	vvalorultcompra = 0;
@@ -72,11 +72,11 @@ function funoperacion()
 	console.log('\n');
 	//console.log('------ INICIO -----');
 	console.log('\033[47m\033[30mIteracion:' + vid_op + '.' + i, '\033[0m');
-	console.log('vestado_op:           ' + vestado_op);
-	console.log('vask:                 ' + vask);
-	console.log('vbid:                 ' + vbid);
-	console.log('vbidant:              ' + vbidant);
-	console.log('vbidant2:             ' + vbidant2);
+	console.log('vestado_op:            ' + vestado_op);
+	console.log('vask:                  ' + vask);
+	console.log('vbid:                  ' + vbid);
+	console.log('vbidant:               ' + vbidant);
+	console.log('vbidant2:              ' + vbidant2);
 	if (vbid > vbidant) {
 		console.log('\033[32mSube','\033[0m');
 		contsb = (contsb + 1);
@@ -100,19 +100,19 @@ function funoperacion()
 			vdiferenciavc = (vbid - vaskultcompra) * vuniacumcompra;
 			vporcactual = (vdiferenciavc / vvalorultcompra);
 
-			console.log('vprofoper:            ' + vprofoper);
-			console.log('contsb:               ' + contsb);
-			console.log('vbid:                 ' + vbid);
-			console.log('vask:                 ' + vask);
-			console.log('vaskcompraini:        ' + vaskcompraini);
-			console.log('vaskultcompra:        ' + vaskultcompra);
-			console.log('vdiferenciavc:        ' + vdiferenciavc);
-			console.log('vporcactual:          ' + vporcactual);
+			console.log('vprofoper:             ' + vprofoper);
+			console.log('contsb:                ' + contsb);
+			console.log('vbid:                  ' + vbid);
+			console.log('vask:                  ' + vask);
+			console.log('vaskcompraini:         ' + vaskcompraini);
+			console.log('vaskultcompra:         ' + vaskultcompra);
+			console.log('vdiferenciavc:         ' + vdiferenciavc);
+			console.log('vporcactual:           ' + vporcactual);
 			console.log('vporcesperadorecompra:' + vporcesperadorecompra);
-			console.log('vporcesperadoventa:   ' + vporcesperadoventa);
-			console.log('vuniacumcompra:       ' + vuniacumcompra);
-			console.log('vvalorultcompra:      ' + vvalorultcompra);
-			console.log('vacumcompra:          ' + vacumcompra);
+			console.log('vporcesperadoventa:    ' + vporcesperadoventa);
+			console.log('vuniacumcompra:        ' + vuniacumcompra);
+			console.log('vvalorultcompra:       ' + vvalorultcompra);
+			console.log('vacumcompra:           ' + vacumcompra);
 			if (vporcactual < vporcesperadorecompra) {
 				funcompra();
 				console.log('\033[31mAcción: Recomprar','\033[0m');
@@ -154,7 +154,7 @@ function funventa()
 	vaskcompraini = 0;
 	vvalorventa = vuniacumcompra * vbid;
 	vdiferenciatotalop = vvalorventa - vacumcompra;
-	console.log('\033[32mvvalorventa:          ' + vvalorventa, '\033[0m');
+	console.log('\033[32mvvalorventa:           ' + vvalorventa, '\033[0m');
 	console.log('\033[32mvdiferenciatotalop:    ' + vdiferenciatotalop, '\033[0m');
 	vuniacumcompra = vunicompraini;
 	vprofoper = 0;
