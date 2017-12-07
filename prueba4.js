@@ -134,6 +134,7 @@ function funoperacion()
 				console.log('\033[31mvdiferenciatotalopacum:' + vdiferenciatotalopacum, '\033[0m');
 			} else if (vdiferenciatotalopacum > 0){
 				console.log('\033[32mvdiferenciatotalopacum:' + vdiferenciatotalopacum, '\033[0m');
+				}
 				else{
 					console.log('vdiferenciatotalopacum:' + vdiferenciatotalopacum);
 				}
